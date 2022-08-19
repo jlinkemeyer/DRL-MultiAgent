@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Johanna\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Johanna\.Rider2019.3\system\resharper-host\Local\Transient\ReSharperHost\v193\SolutionCaches\_DRL-Unity.-1781115284.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Johanna\Documents\GitHub\DRL-MultiAgent\DRL-Unity" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="ML-Agents" t="Include">
+          <e p="Editor" t="Include">
+            <e p="DisableBurstFromMenu.cs" t="Include" />
+            <e p="Tests" t="Include">
+              <e p="SampleExporter.cs" t="Include" />
+              <e p="StandaloneBuildTest.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Examples" t="Include">
+            <e p="Basic" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="BasicActuatorComponent.cs" t="Include" />
+                <e p="BasicController.cs" t="Include" />
+                <e p="BasicSensorComponent.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Hallway" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="HallwayAgent.cs" t="Include" />
+                <e p="HallwaySettings.cs" t="Include" />
+              </e>
+            </e>
+            <e p="PushBlock" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="GoalDetect.cs" t="Include" />
+                <e p="GoalDetectTrigger.cs" t="Include" />
+                <e p="PushAgentBasic.cs" t="Include" />
+                <e p="PushAgentCollab.cs" t="Include" />
+                <e p="PushBlockEnvController.cs" t="Include" />
+                <e p="PushBlockSettings.cs" t="Include" />
+              </e>
+            </e>
+            <e p="SharedAssets" t="Include">
+              <e p="Materials" t="Include">
+                <e p="GridPatternShader.shader" t="Include" />
+                <e p="ShaderOutline.shader" t="Include" />
+                <e p="ShaderRadialGrid.shader" t="Include" />
+              </e>
+              <e p="Scripts" t="Include">
+                <e p="AdjustTrainingTimescale.cs" t="Include" />
+                <e p="Area.cs" t="Include" />
+                <e p="CameraFollow.cs" t="Include" />
+                <e p="CollisionCallbacks.cs" t="Include" />
+                <e p="DirectionIndicator.cs" t="Include" />
+                <e p="FlyCamera.cs" t="Include" />
+                <e p="GroundContact.cs" t="Include" />
+                <e p="JointDriveController.cs" t="Include" />
+                <e p="ModelOverrider.cs" t="Include" />
+                <e p="Monitor.cs" t="Include" />
+                <e p="OrientationCubeController.cs" t="Include" />
+                <e p="ProjectSettingsOverrides.cs" t="Include" />
+                <e p="SensorBase.cs" t="Include" />
+                <e p="TargetContact.cs" t="Include" />
+                <e p="TargetController.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Startup" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="Startup.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="TestScenes" t="Include">
+            <e p="TestCompressedTexture" t="Include">
+              <e p="TestTextureSensor.cs" t="Include" />
+              <e p="TestTextureSensorComponent.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Timers" t="Include">
+            <e p="3DBall_timers.json" t="Include" />
+            <e p="Basic_timers.json" t="Include" />
+            <e p="DungeonEscape_timers.json" t="Include" />
+            <e p="FoodCollector_timers.json" t="Include" />
+            <e p="GridWorld_timers.json" t="Include" />
+            <e p="Hallway_timers.json" t="Include" />
+            <e p="MAC_timers.json" t="Include" />
+            <e p="Match3_timers.json" t="Include" />
+            <e p="PushBlock_timers.json" t="Include" />
+            <e p="PushBlockCollab_timers.json" t="Include" />
+            <e p="Pyramids_timers.json" t="Include" />
+            <e p="SoccerTwos_timers.json" t="Include" />
+            <e p="Walker_timers.json" t="Include" />
+            <e p="WallJump_timers.json" t="Include" />
+            <e p="Worm_timers.json" t="Include" />
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="MACAgent.cs" t="Include" />
+          <e p="MACGoalDetect.cs" t="Include" />
+          <e p="MacGoalWasHit.cs" t="Include" />
+          <e p="MACSettings.cs" t="Include" />
+        </e>
+      </e>
+      <e p="DRL-Unity.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp\Bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

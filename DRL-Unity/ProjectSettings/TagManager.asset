@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - agent
+  - ground
+  - wall
+  - goal
+  - block
+  - GoalRed
+  - GoalBlue
+  - symbol_O
+  - symbol_X_Goal
+  - symbol_O_Goal
+  - symbol_X
   layers:
   - Default
   - TransparentFX

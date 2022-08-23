@@ -136,7 +136,7 @@ public class MacAgent : Agent
     }
 
     // TODO Box is on goal position
-    public void ScoredAGoal(float score)
+    public void ScoredAGoal(Collision col, float score)
     {
         // Check if episode is finished (when all goals received one object)
         bool done = true;
@@ -150,7 +150,8 @@ public class MacAgent : Agent
         }
 
         // TODO Disable Rigidbody to disable movability of the block?
-        //col.gameObject.SetActive(false);
+        col.gameObject.SetActive(false);
+        col.gameObject.GetComponent<MacDisableBlocks>().SetActive();
 
         //Give Agent Reward
         AddReward(score);
@@ -176,14 +177,16 @@ public class MacAgent : Agent
         for (int i = 0; i < blocks.Length; i++)
         {
             blocks[i].transform.position = blockPositionMemory[i];
+            blocks[i].GetComponent<Rigidbody>().velocity *= 0;
         }
     }
 
     // TODO: Sets the settings for the episode
-    public override void OnEpisodeBegin()
+    /*public override void OnEpisodeBegin()
     {
         bool nonZero = false;
-        for (int i = 0; i < 4; i++)
+        int numberGoals = 4;
+        for (int i = 0; i < numberGoals; i++)
         {
             // Determine color pattern (0 = no show, 1 = blue, 2 = red)
             int rd = Random.Range(0, 3);
@@ -193,7 +196,7 @@ public class MacAgent : Agent
             {
                 nonZero = true;
             }
-            if (i == 3 && !nonZero)
+            if (i == numberGoals-1 && !nonZero)
             {
                 rd = Random.Range(1, 3);
             }
@@ -212,6 +215,7 @@ public class MacAgent : Agent
                 instructions[i].GetComponent<Renderer>().material = materialBlue;
                 goals[i].tag = "GoalBlue";
                 goals[i].GetComponent<MacGoalWasHit>().SetGoalHit(false);
+                //goals[i].GetComponent<MacDisableBlocks>().DeactivateRed();
             }
             else
             {
@@ -220,7 +224,63 @@ public class MacAgent : Agent
                 instructions[i].GetComponent<Renderer>().material = materialRed;
                 goals[i].tag = "GoalRed";
                 goals[i].GetComponent<MacGoalWasHit>().SetGoalHit(false);
+                //goals[i].GetComponent<MacDisableBlocks>().DeactivateBlue();
             }
+            
+            goals[i].GetComponent<MacDisableBlocks>().SetActive();
+        }
+        
+        ResetBlocks();
+
+        // TODO: Set initial position, rotation, and velocity
+        transform.position = agentPositionMemory;
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        m_AgentRb.velocity *= 0f;
+
+        // TODO
+        //m_statsRecorder.Add("Goal/Correct", 0, StatAggregationMethod.Sum);
+        //m_statsRecorder.Add("Goal/Wrong", 0, StatAggregationMethod.Sum);
+    }*/
+    
+    // TODO: Sets the settings for the episode
+    public override void OnEpisodeBegin()
+    {
+        // Get a random goal:
+        int rdGoal = Random.Range(0, 4);
+        int numberGoals = 4;
+        for (int i = 0; i < numberGoals; i++)
+        {
+            // Determine color pattern (0 = no show, 1 = blue, 2 = red)
+            int rd = Random.Range(1, 3);
+
+            if (rd == 1)
+            {
+                goals[i].SetActive(true);
+                instructions[i].SetActive(true);
+                instructions[i].GetComponent<Renderer>().material = materialBlue;
+                goals[i].tag = "GoalBlue";
+                goals[i].GetComponent<MacGoalWasHit>().SetGoalHit(false);
+                //goals[i].GetComponent<MacDisableBlocks>().DeactivateRed();
+            }
+            else
+            {
+                goals[i].SetActive(true);
+                instructions[i].SetActive(true);
+                instructions[i].GetComponent<Renderer>().material = materialRed;
+                goals[i].tag = "GoalRed";
+                goals[i].GetComponent<MacGoalWasHit>().SetGoalHit(false);
+                //goals[i].GetComponent<MacDisableBlocks>().DeactivateBlue();
+            }
+            
+            if (i != rdGoal)
+            {
+                // Do not show goal and instruction object
+                goals[i].SetActive(false);
+                instructions[i].SetActive(false);
+                goals[i].GetComponent<MacGoalWasHit>().SetGoalHit(true); // Set this internally to not run into problems
+            }
+            
+            goals[i].GetComponent<MacDisableBlocks>().SetActive();
         }
         
         ResetBlocks();
@@ -234,5 +294,15 @@ public class MacAgent : Agent
         //m_statsRecorder.Add("Goal/Correct", 0, StatAggregationMethod.Sum);
         //m_statsRecorder.Add("Goal/Wrong", 0, StatAggregationMethod.Sum);
     }
+    
+    void OnCollisionEnter(Collision col)
+    {
+        // Enforce touching boxes in the beginning
+        if (col.gameObject.CompareTag("wall"))
+        {
+            AddReward(-0.1f);
+        }
+    }
 }
+
 

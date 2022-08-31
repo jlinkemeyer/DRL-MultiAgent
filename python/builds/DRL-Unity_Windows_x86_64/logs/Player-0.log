@@ -1,0 +1,675 @@
+Mono path[0] = 'C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/python/DRL-Unity_Windows_x86_64/DRL-Unity_Data/Managed'
+Mono config path = 'C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/python/DRL-Unity_Windows_x86_64/MonoBleedingEdge/etc'
+Found 2 interfaces on host : 0) 192.168.56.1 1) 192.168.1.120
+Multi-casting "[IP] 192.168.56.1 [Port] 55437 [Flags] 2 [Guid] 2322256184 [EditorId] 502506110 [Version] 1048832 [Id] WindowsPlayer(2,DESKTOP-C7PPDAT) [Debug] 1 [PackageName] WindowsPlayer [ProjectName] DRL-Unity" to [225.0.0.222:54997]...
+Starting managed debugger on port 56184
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=0.0.0.0:56184
+Initialize engine version: 2021.3.8f1 (b30333d56e81)
+[Subsystems] Discovering subsystems at path C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/python/DRL-Unity_Windows_x86_64/DRL-Unity_Data/UnitySubsystems
+GfxDevice: creating device client; threaded=1; jobified=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: AMD Radeon(TM) Graphics (ID=0x1636)
+    Vendor:   ATI
+    VRAM:     3774 MB
+    Driver:   27.20.11044.4003
+Begin MonoManager ReloadAssembly
+- Completed reload, in  0.212 seconds
+<RI> Initializing input.
+<RI> Input initialized.
+D3D11 device created for Microsoft Media Foundation video decoding.
+<RI> Initialized touch support.
+UnloadTime: 1.315900 ms
+Unknown communication error between Python. Python communication protocol: 1.5.0, Python library version: 0.29.0.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.RpcCommunicator:Initialize (Unity.MLAgents.CommunicatorInitParameters,Unity.MLAgents.UnityRLInitParameters&) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Communicator/RpcCommunicator.cs:172)
+Unity.MLAgents.Academy:InitializeEnvironment () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:445)
+Unity.MLAgents.Academy:LazyInitialize () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:279)
+Unity.MLAgents.Academy:.ctor () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:248)
+Unity.MLAgents.Academy/<>c:<.cctor>b__82_0 () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:117)
+System.Lazy`1<Unity.MLAgents.Academy>:ViaFactory (System.Threading.LazyThreadSafetyMode)
+System.Lazy`1<Unity.MLAgents.Academy>:ExecutionAndPublication (System.LazyHelper,bool)
+System.Lazy`1<Unity.MLAgents.Academy>:CreateValue ()
+System.Lazy`1<Unity.MLAgents.Academy>:get_Value ()
+Unity.MLAgents.Academy:get_Instance () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:132)
+Unity.MLAgents.DecisionRequester:Awake () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/DecisionRequester.cs:57)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Communicator/RpcCommunicator.cs Line: 172)
+
+Couldn't connect to trainer on port 5005 using API version 1.5.0. Will perform inference instead.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Unity.MLAgents.Academy:InitializeEnvironment () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:459)
+Unity.MLAgents.Academy:LazyInitialize () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:279)
+Unity.MLAgents.Academy:.ctor () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:248)
+Unity.MLAgents.Academy/<>c:<.cctor>b__82_0 () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:117)
+System.Lazy`1<Unity.MLAgents.Academy>:ViaFactory (System.Threading.LazyThreadSafetyMode)
+System.Lazy`1<Unity.MLAgents.Academy>:ExecutionAndPublication (System.LazyHelper,bool)
+System.Lazy`1<Unity.MLAgents.Academy>:CreateValue ()
+System.Lazy`1<Unity.MLAgents.Academy>:get_Value ()
+Unity.MLAgents.Academy:get_Instance () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:132)
+Unity.MLAgents.DecisionRequester:Awake () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/DecisionRequester.cs:57)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs Line: 459)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Fewer observations (0) made than vector observation size (1). The observations will be padded.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+Unity.MLAgents.Sensors.VectorSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs:56)
+Unity.MLAgents.Sensors.StackingSensor:Write (Unity.MLAgents.Sensors.ObservationWriter) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/StackingSensor.cs:103)
+Unity.MLAgents.Policies.HeuristicPolicy:StepSensors (System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:133)
+Unity.MLAgents.Policies.HeuristicPolicy:RequestDecision (Unity.MLAgents.AgentInfo,System.Collections.Generic.List`1<Unity.MLAgents.Sensors.ISensor>) (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Policies/HeuristicPolicy.cs:38)
+Unity.MLAgents.Agent:SendInfoToBrain () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1099)
+Unity.MLAgents.Agent:SendInfo () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Agent.cs:1326)
+Unity.MLAgents.Academy:EnvironmentStep () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:573)
+Unity.MLAgents.AcademyFixedUpdateStepper:FixedUpdate () (at C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Academy.cs:43)
+
+(Filename: C:/Users/tj-we/OneDrive/Dokumente/Studium/Master/sem_3/deepRL/project_marl/git/DRL-MultiAgent/DRL-Unity/Library/PackageCache/com.unity.ml-agents@2.0.1/Runtime/Sensors/VectorSensor.cs Line: 56)
+
+Setting up 2 worker threads for Enlighten.
+PlayerConnection::CleanupMemory Statistics:
+[ALLOC_TEMP_TLS] TLS Allocator
+  StackAllocators : 
+    [ALLOC_TEMP_MAIN]
+      Peak usage frame count: [4.0 KB-8.0 KB]: 128 frames, [8.0 KB-16.0 KB]: 21 frames, [2.0 MB-4.0 MB]: 1 frames
+      Initial Block Size 4.0 MB
+      Current Block Size 4.0 MB
+      Peak Allocated Bytes 2.0 MB
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 8]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 10]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 6]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_AUDIO_FMOD (WASAPI) feeder thread]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 168 B
+      Overflow Count 0
+    [ALLOC_TEMP_AUDIO_FMOD mixer thread]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 1]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 11]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 3]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_BatchDeleteObjects]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_AUDIO_FMOD stream thread]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 15]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 7]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 2]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 1]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 9.7 KB
+      Overflow Count 0
+    [ALLOC_TEMP_Loading.PreloadManager]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 46.6 KB
+      Overflow Count 4
+    [ALLOC_TEMP_Profiler.Dispatcher]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 12]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_AssetGarbageCollectorHelper] x 3
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 5]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 13]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 2]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 3.6 KB
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 0]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 4]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 0]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 3.6 KB
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 14]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 9]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_EnlightenWorker] x 2
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_UnityGfxDeviceWorker]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 14.0 KB
+      Overflow Count 0
+    [ALLOC_TEMP_Loading.AsyncRead]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 501 B
+      Overflow Count 0
+[ALLOC_MEMORYPROFILER]
+  Peak usage frame count: [32.0 KB-64.0 KB]: 150 frames
+  Requested Block Size 1.0 MB
+  Peak Block count 1
+  Peak Allocated memory 64.0 KB
+  Peak Large allocation bytes 0 B
+[ALLOC_DEFAULT] Dual Thread Allocator
+  Peak main deferred allocation count 5
+    [ALLOC_BUCKET]
+      Large Block size 4.0 MB
+      Used Block count 1
+      Peak Allocated bytes 0.9 MB
+    [ALLOC_DEFAULT_MAIN]
+      Peak usage frame count: [8.0 MB-16.0 MB]: 150 frames
+      Requested Block Size 16.0 MB
+      Peak Block count 1
+      Peak Allocated memory 13.4 MB
+      Peak Large allocation bytes 0 B
+    [ALLOC_DEFAULT_THREAD]
+      Peak usage frame count: [16.0 MB-32.0 MB]: 150 frames
+      Requested Block Size 16.0 MB
+      Peak Block count 1
+      Peak Allocated memory 17.3 MB
+      Peak Large allocation bytes 16.0 MB
+[ALLOC_TEMP_JOB_1_FRAME]
+  Initial Block Size 2.0 MB
+  Used Block Count 1
+  Overflow Count (too large) 0
+  Overflow Count (full) 0
+[ALLOC_TEMP_JOB_2_FRAMES]
+  Initial Block Size 2.0 MB
+  Used Block Count 1
+  Overflow Count (too large) 0
+  Overflow Count (full) 0
+[ALLOC_TEMP_JOB_4_FRAMES (JobTemp)]
+  Initial Block Size 2.0 MB
+  Used Block Count 2
+  Overflow Count (too large) 0
+  Overflow Count (full) 0
+[ALLOC_TEMP_JOB_ASYNC (Background)]
+  Initial Block Size 1.0 MB
+  Used Block Count 3
+  Overflow Count (too large) 0
+  Overflow Count (full) 0
+[ALLOC_GFX] Dual Thread Allocator
+  Peak main deferred allocation count 1
+    [ALLOC_BUCKET]
+      Large Block size 4.0 MB
+      Used Block count 1
+      Peak Allocated bytes 0.9 MB
+    [ALLOC_GFX_MAIN]
+      Peak usage frame count: [32.0 KB-64.0 KB]: 149 frames, [2.0 MB-4.0 MB]: 1 frames
+      Requested Block Size 16.0 MB
+      Peak Block count 1
+      Peak Allocated memory 2.7 MB
+      Peak Large allocation bytes 0 B
+    [ALLOC_GFX_THREAD]
+      Peak usage frame count: [0.5 MB-1.0 MB]: 150 frames
+      Requested Block Size 16.0 MB
+      Peak Block count 1
+      Peak Allocated memory 0.8 MB
+      Peak Large allocation bytes 0 B
+[ALLOC_CACHEOBJECTS] Dual Thread Allocator
+  Peak main deferred allocation count 2
+    [ALLOC_BUCKET]
+      Large Block size 4.0 MB
+      Used Block count 1
+      Peak Allocated bytes 0.9 MB
+    [ALLOC_CACHEOBJECTS_MAIN]
+      Peak usage frame count: [1.0 MB-2.0 MB]: 150 frames
+      Requested Block Size 4.0 MB
+      Peak Block count 1
+      Peak Allocated memory 1.1 MB
+      Peak Large allocation bytes 0 B
+    [ALLOC_CACHEOBJECTS_THREAD]
+      Peak usage frame count: [1.0 MB-2.0 MB]: 149 frames, [2.0 MB-4.0 MB]: 1 frames
+      Requested Block Size 4.0 MB
+      Peak Block count 2
+      Peak Allocated memory 3.9 MB
+      Peak Large allocation bytes 0 B
+[ALLOC_TYPETREE] Dual Thread Allocator
+  Peak main deferred allocation count 0
+    [ALLOC_BUCKET]
+      Large Block size 4.0 MB
+      Used Block count 1
+      Peak Allocated bytes 0.9 MB
+    [ALLOC_TYPETREE_MAIN]
+      Peak usage frame count: [0-1.0 KB]: 150 frames
+      Requested Block Size 2.0 MB
+      Peak Block count 1
+      Peak Allocated memory 1.0 KB
+      Peak Large allocation bytes 0 B
+    [ALLOC_TYPETREE_THREAD]
+      Peak usage frame count: [0-1.0 KB]: 150 frames
+      Requested Block Size 2.0 MB
+      Peak Block count 0
+      Peak Allocated memory 0 B
+      Peak Large allocation bytes 0 B
+[ALLOC_PROFILER]
+  Peak usage frame count: [16.0 KB-32.0 KB]: 150 frames
+  Requested Block Size 16.0 MB
+  Peak Block count 1
+  Peak Allocated memory 31.0 KB
+  Peak Large allocation bytes 0 B
+    [ALLOC_PROFILER_BUCKET]
+      Large Block size 4.0 MB
+      Used Block count 1
+      Peak Allocated bytes 329 B
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1661944048742,"processId":5800,"allocatedMemory":6202508,"memoryLabels":[{"Default":9421},{"Permanent":10160},{"NewDelete":11808},{"Thread":4228764},{"Manager":12208},{"VertexData":12},{"Geometry":560},{"Texture":16},{"Shader":67233},{"Material":24},{"GfxDevice":49488},{"Animation":240},{"Audio":3928},{"Physics":304},{"Serialization":744},{"Input":14208},{"JobScheduler":200},{"Mono":40},{"ScriptingNativeRuntime":216},{"BaseObject":1617364},{"Resource":688},{"Renderer":1960},{"Transform":16},{"File":840},{"WebCam":40},{"Culling":40},{"Terrain":953},{"Wind":24},{"STL":48},{"String":4038},{"DynamicArray":30868},{"HashMap":7680},{"Utility":1888},{"PoolAlloc":1368},{"TypeTree":1792},{"ScriptManager":80},{"RuntimeInitializeOnLoadManager":80},{"SpriteAtlas":128},{"GI":3688},{"Unet":16},{"Director":7776},{"WebRequest":688},{"VR":45521},{"SceneManager":424},{"Video":32},{"LazyScriptCache":40},{"NativeArray":12},{"Camera":25},{"Secure":1},{"SerializationCache":624},{"APIUpdating":5872},{"Subsystems":392},{"VirtualTexturing":57888},{"AssetReference":40}]}

@@ -97,8 +97,13 @@ def train_single_agent(env_path, log_dir, config):
 
             # get next observation, reward and done info
             decision_steps, terminal_steps = env.get_steps(behavior_name)
-            next_observation = decision_steps[tracked_agent].obs
-            reward = decision_steps[tracked_agent].reward
+
+            if tracked_agent in decision_steps:
+                next_observation = decision_steps[tracked_agent].obs
+                reward = decision_steps[tracked_agent].reward
+            if tracked_agent in terminal_steps:
+                next_observation = terminal_steps[tracked_agent].obs
+                reward = terminal_steps[tracked_agent].reward
             done = tracked_agent in terminal_steps
 
             # add data to buffer

@@ -96,13 +96,11 @@
         <e p="Scripts" t="Include">
           <e p="MACAgent.cs" t="Include" />
           <e p="MacCommunicationAgent.cs" t="Include" />
+          <e p="MacCustomTag.cs" t="Include" />
           <e p="MacDisableBlocks.cs" t="Include" />
           <e p="MACGoalDetect.cs" t="Include" />
           <e p="MacGoalWasHit.cs" t="Include" />
           <e p="MACSettings.cs" t="Include" />
-        </e>
-        <e p="StreamingAssets" t="Include">
-          <e p="UnityServicesProjectConfiguration.json" t="Include" />
         </e>
       </e>
       <e p="DRL-Unity.sln" t="IncludeFlat" />

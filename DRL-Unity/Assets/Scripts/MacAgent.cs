@@ -213,7 +213,8 @@ public class MacAgent : Agent
                 goals[i].SetActive(true);
                 instructions[i].SetActive(true);
                 instructions[i].GetComponent<Renderer>().material = materialBlue;
-                goals[i].tag = "GoalBlue";
+                instructions[i].tag = "instructionBlue";
+                goals[i].GetComponent<MacCustomTag>().UpdateCustomTag("GoalBlue");
                 goals[i].GetComponent<MacGoalWasHit>().SetGoalHit(false);
                 //goals[i].GetComponent<MacDisableBlocks>().DeactivateRed();
             }
@@ -222,7 +223,8 @@ public class MacAgent : Agent
                 goals[i].SetActive(true);
                 instructions[i].SetActive(true);
                 instructions[i].GetComponent<Renderer>().material = materialRed;
-                goals[i].tag = "GoalRed";
+                instructions[i].tag = "instructionRed";
+                goals[i].GetComponent<MacCustomTag>().UpdateCustomTag("GoalRed");
                 goals[i].GetComponent<MacGoalWasHit>().SetGoalHit(false);
                 //goals[i].GetComponent<MacDisableBlocks>().DeactivateBlue();
             }
@@ -259,7 +261,7 @@ public class MacAgent : Agent
                 instructions[i].SetActive(true);
                 instructions[i].GetComponent<Renderer>().material = materialBlue;
                 instructions[i].tag = "instructionBlue";
-                goals[i].tag = "GoalBlue";
+                goals[i].GetComponent<MacCustomTag>().UpdateCustomTag("GoalBlue");
                 goals[i].GetComponent<MacGoalWasHit>().SetGoalHit(false);
                 //goals[i].GetComponent<MacDisableBlocks>().DeactivateRed();
             }
@@ -269,7 +271,7 @@ public class MacAgent : Agent
                 instructions[i].SetActive(true);
                 instructions[i].GetComponent<Renderer>().material = materialRed;
                 instructions[i].tag = "instructionRed";
-                goals[i].tag = "GoalRed";
+                goals[i].GetComponent<MacCustomTag>().UpdateCustomTag("GoalRed");
                 goals[i].GetComponent<MacGoalWasHit>().SetGoalHit(false);
                 //goals[i].GetComponent<MacDisableBlocks>().DeactivateBlue();
             }

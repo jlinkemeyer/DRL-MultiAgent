@@ -28,27 +28,27 @@ public class MacGoalDetect : MonoBehaviour
         // Enforce touching boxes in the beginning
         if (col.gameObject.CompareTag("agent"))
         {
-            agent.AddReward(0.000001f);
+            agent.AddReward(0.1f);
         }
         
         // Box touched a goal
-        if (col.gameObject.CompareTag("GoalRed") || col.gameObject.CompareTag("GoalBlue"))
+        if (col.gameObject.CompareTag("goal"))
         {
             // Set that the goal was hit (does not matter if correct or wrong)
             col.gameObject.GetComponent<MacGoalWasHit>().SetGoalHit(true);
 
             // Determine whether goal was correct or wrong
-            if ((_boxMaterial.name).Contains("Red") && col.gameObject.CompareTag("GoalRed") ||(_boxMaterial.name).Contains("Blue") && col.gameObject.CompareTag("GoalBlue"))
+            if ((_boxMaterial.name).Contains("Red") && col.gameObject.GetComponent<MacCustomTag>().IsTag("GoalRed") ||(_boxMaterial.name).Contains("Blue") && col.gameObject.GetComponent<MacCustomTag>().IsTag("GoalBlue"))
             {
                 // Remove the tag of the goal such that the agent cannot score in that goal again
-                col.gameObject.tag = "Untagged";
+                col.gameObject.GetComponent<MacCustomTag>().UpdateCustomTag("");
                 // positive reward for correct goal
                 agent.ScoredAGoal(col, 5f);
             }
             else
             {
                 // Remove the tag of the goal such that the agent cannot score in that goal again
-                col.gameObject.tag = "Untagged";
+                col.gameObject.GetComponent<MacCustomTag>().UpdateCustomTag("");
                 // negative reward for wrong goal
                 agent.ScoredAGoal(col,  -2f);
             }

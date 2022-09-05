@@ -493,7 +493,7 @@ GameObject:
   - component: {fileID: 427892166}
   m_Layer: 0
   m_Name: Block_A_Blue
-  m_TagString: block
+  m_TagString: blockBlue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -718,7 +718,7 @@ GameObject:
   - component: {fileID: 509578355}
   m_Layer: 0
   m_Name: Block_D_Red
-  m_TagString: block
+  m_TagString: blockRed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -982,7 +982,7 @@ GameObject:
   - component: {fileID: 592689297}
   m_Layer: 0
   m_Name: Block_B_Red
-  m_TagString: block
+  m_TagString: blockRed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1446,7 +1446,7 @@ GameObject:
   - component: {fileID: 1069571634}
   m_Layer: 0
   m_Name: Block_D_Blue
-  m_TagString: block
+  m_TagString: blockBlue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1783,7 +1783,7 @@ GameObject:
   - component: {fileID: 1511212208}
   m_Layer: 0
   m_Name: Block_C_Blue
-  m_TagString: block
+  m_TagString: blockBlue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1911,7 +1911,7 @@ GameObject:
   - component: {fileID: 1671792204}
   m_Layer: 0
   m_Name: Block_A_Red
-  m_TagString: block
+  m_TagString: blockRed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2261,7 +2261,7 @@ GameObject:
   - component: {fileID: 2110841310}
   m_Layer: 0
   m_Name: Block_C_Red
-  m_TagString: block
+  m_TagString: blockRed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2387,10 +2387,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SensorName: RayPerceptionSensor
   m_DetectableTags:
-  - symbol_O_Goal
-  - symbol_X_Goal
-  - symbol_O
-  - symbol_X
+  - blockBlue
+  - blockRed
+  - instructionRed
+  - instructionBlue
   - wall
   m_RaysPerDirection: 2
   m_MaxRayDegrees: 70
@@ -3904,7 +3904,7 @@ GameObject:
   - component: {fileID: 2946281774277420897}
   m_Layer: 0
   m_Name: Block_B_Blue
-  m_TagString: block
+  m_TagString: blockBlue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -15,6 +15,14 @@ TagManager:
   - symbol_X_Goal
   - symbol_O_Goal
   - symbol_X
+  - blockLarge
+  - blockSmall
+  - blockVeryLarge
+  - blockRed
+  - blockBlue
+  - instruction
+  - instructionBlue
+  - instructionRed
   layers:
   - Default
   - TransparentFX

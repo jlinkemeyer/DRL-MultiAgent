@@ -95,6 +95,7 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="MACAgent.cs" t="Include" />
+          <e p="MacCommunicationAgent.cs" t="Include" />
           <e p="MacDisableBlocks.cs" t="Include" />
           <e p="MACGoalDetect.cs" t="Include" />
           <e p="MacGoalWasHit.cs" t="Include" />

@@ -247,7 +247,7 @@ public class MacAgent : Agent
     public override void OnEpisodeBegin()
     {
         // Get a random goal:
-        int rdGoal = Random.Range(0, 4);
+        int rdGoal = 1; Random.Range(0, 4);
         int numberGoals = 4;
         for (int i = 0; i < numberGoals; i++)
         {

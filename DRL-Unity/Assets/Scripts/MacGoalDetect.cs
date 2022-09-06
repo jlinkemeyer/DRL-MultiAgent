@@ -28,7 +28,7 @@ public class MacGoalDetect : MonoBehaviour
         // Enforce touching boxes in the beginning
         if (col.gameObject.CompareTag("agent"))
         {
-            agent.AddReward(0.1f);
+            agent.AddReward(0.0001f);
         }
         
         // Box touched a goal
@@ -43,14 +43,14 @@ public class MacGoalDetect : MonoBehaviour
                 // Remove the tag of the goal such that the agent cannot score in that goal again
                 col.gameObject.GetComponent<MacCustomTag>().UpdateCustomTag("");
                 // positive reward for correct goal
-                agent.ScoredAGoal(col, 5f);
+                agent.ScoredAGoal(col, 1f);
             }
             else
             {
                 // Remove the tag of the goal such that the agent cannot score in that goal again
                 col.gameObject.GetComponent<MacCustomTag>().UpdateCustomTag("");
-                // negative reward for wrong goal
-                agent.ScoredAGoal(col,  -2f);
+                // negative reward for wrong goal (small positive)
+                agent.ScoredAGoal(col,  -0.01f);
             }
         }
     }

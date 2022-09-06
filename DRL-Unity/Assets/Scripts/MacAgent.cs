@@ -129,7 +129,6 @@ public class MacAgent : Agent
     
     // TODO: On each timestep, the agent receives a small negative reward + performs an action
     public override void OnActionReceived(ActionBuffers actionBuffers)
-
     {
         AddReward(-1f / MaxStep);
         MoveAgent(actionBuffers.DiscreteActions);
@@ -302,10 +301,10 @@ public class MacAgent : Agent
     void OnCollisionEnter(Collision col)
     {
         // Enforce touching boxes in the beginning
-        if (col.gameObject.CompareTag("wall"))
+        /*if (col.gameObject.CompareTag("wall"))
         {
             AddReward(-0.1f);
-        }
+        }*/
     }
 }
 

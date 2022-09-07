@@ -26,10 +26,10 @@ public class MacGoalDetect : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         // Enforce touching boxes in the beginning
-        if (col.gameObject.CompareTag("agent"))
+        /*if (col.gameObject.CompareTag("agent"))
         {
             agent.AddReward(0.0001f);
-        }
+        }*/
         
         // Box touched a goal
         if (col.gameObject.CompareTag("goal"))
@@ -50,7 +50,7 @@ public class MacGoalDetect : MonoBehaviour
                 // Remove the tag of the goal such that the agent cannot score in that goal again
                 col.gameObject.GetComponent<MacCustomTag>().UpdateCustomTag("");
                 // negative reward for wrong goal (small positive)
-                agent.ScoredAGoal(col,  -0.01f);
+                agent.ScoredAGoal(col,  -0.1f);
             }
         }
     }

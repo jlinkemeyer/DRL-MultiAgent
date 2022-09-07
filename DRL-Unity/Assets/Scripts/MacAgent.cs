@@ -15,6 +15,10 @@ public class MacAgent : Agent
     public GameObject goalB;
     public GameObject goalC;
     public GameObject goalD;
+    public GameObject wallA;
+    public GameObject wallB;
+    public GameObject wallC;
+    public GameObject wallD;
     public GameObject instructionA;
     public GameObject instructionB;
     public GameObject instructionC;
@@ -37,6 +41,8 @@ public class MacAgent : Agent
     private Vector3 agentPositionMemory;
     private GameObject[] goals;
     private GameObject[] instructions;
+    private GameObject[] walls;
+    private int normalize;
 
     // TODO
     public override void Initialize()
@@ -53,6 +59,7 @@ public class MacAgent : Agent
         
         // Get all goals and instructions
         goals = new GameObject[] {goalA, goalB, goalC, goalD};
+        walls = new GameObject[] {wallA, wallB, wallC, wallD};
         instructions = new GameObject[] {instructionA, instructionB, instructionC, instructionD};
 
         // TODO
@@ -153,7 +160,7 @@ public class MacAgent : Agent
         col.gameObject.GetComponent<MacDisableBlocks>().SetActive();
 
         //Give Agent Reward
-        AddReward(score);
+        AddReward(score / normalize);
 
         // Swap ground material for a bit to indicate we scored -> red for wrong combination, green for correct
         if (score < 0)
@@ -185,6 +192,7 @@ public class MacAgent : Agent
     {
         bool nonZero = false;
         int numberGoals = 4;
+        normalize = 0;
         for (int i = 0; i < numberGoals; i++)
         {
             // Determine color pattern (0 = no show, 1 = blue, 2 = red)
@@ -204,12 +212,15 @@ public class MacAgent : Agent
             {
                 // Do not show goal and instruction object
                 goals[i].SetActive(false);
+                walls[i].SetActive(true);
                 instructions[i].SetActive(false);
                 goals[i].GetComponent<MacGoalWasHit>().SetGoalHit(true); // Set this internally to not run into problems
             } 
             else if (rd == 1)
             {
+                normalize += 1;
                 goals[i].SetActive(true);
+                walls[i].SetActive(false);
                 instructions[i].SetActive(true);
                 instructions[i].GetComponent<Renderer>().material = materialBlue;
                 instructions[i].tag = "instructionBlue";
@@ -219,7 +230,9 @@ public class MacAgent : Agent
             }
             else
             {
+                normalize += 1;
                 goals[i].SetActive(true);
+                walls[i].SetActive(false);
                 instructions[i].SetActive(true);
                 instructions[i].GetComponent<Renderer>().material = materialRed;
                 instructions[i].tag = "instructionRed";
@@ -247,8 +260,9 @@ public class MacAgent : Agent
     public override void OnEpisodeBegin()
     {
         // Get a random goal:
-        int rdGoal = 1; Random.Range(0, 4);
+        int rdGoal = Random.Range(0, 4);
         int numberGoals = 4;
+        normalize = 1;
         for (int i = 0; i < numberGoals; i++)
         {
             // Determine color pattern (0 = no show, 1 = blue, 2 = red)
@@ -257,6 +271,7 @@ public class MacAgent : Agent
             if (rd == 1)
             {
                 goals[i].SetActive(true);
+                walls[i].SetActive(false);
                 instructions[i].SetActive(true);
                 instructions[i].GetComponent<Renderer>().material = materialBlue;
                 instructions[i].tag = "instructionBlue";
@@ -267,6 +282,7 @@ public class MacAgent : Agent
             else
             {
                 goals[i].SetActive(true);
+                walls[i].SetActive(false);
                 instructions[i].SetActive(true);
                 instructions[i].GetComponent<Renderer>().material = materialRed;
                 instructions[i].tag = "instructionRed";
@@ -279,6 +295,7 @@ public class MacAgent : Agent
             {
                 // Do not show goal and instruction object
                 goals[i].SetActive(false);
+                walls[i].SetActive(true);
                 instructions[i].SetActive(false);
                 goals[i].GetComponent<MacGoalWasHit>().SetGoalHit(true); // Set this internally to not run into problems
             }

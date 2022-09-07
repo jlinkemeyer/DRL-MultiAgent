@@ -82,6 +82,7 @@
             <e p="FoodCollector_timers.json" t="Include" />
             <e p="GridWorld_timers.json" t="Include" />
             <e p="Hallway_timers.json" t="Include" />
+            <e p="MAC-2_timers.json" t="Include" />
             <e p="MAC_timers.json" t="Include" />
             <e p="Match3_timers.json" t="Include" />
             <e p="PushBlock_timers.json" t="Include" />

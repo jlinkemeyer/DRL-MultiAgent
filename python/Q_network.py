@@ -10,8 +10,8 @@ class DQN(tf.keras.Model):
 
         self.DQN_layers = [
             # tf.keras.layers.InputLayer(input_shape=state_size),
-            tf.keras.layers.Dense(units=512, activation='relu'),
-            tf.keras.layers.Dense(units=256, activation='relu'),
+            tf.keras.layers.Dense(units=64, activation='relu'),
+            tf.keras.layers.Dense(units=64, activation='relu'),
             tf.keras.layers.Dense(units=action_size, activation='linear')
         ]
     

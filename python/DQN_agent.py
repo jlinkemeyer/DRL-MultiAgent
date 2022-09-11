@@ -13,6 +13,8 @@ class DeepQAgent:
         action_size, 
         state_size, 
         epsilon, 
+        epsilon_min, 
+        epsilon_decay,
         brain, 
         buffer_size,
         batch_size,
@@ -23,6 +25,8 @@ class DeepQAgent:
         # set action and state size
         self.action_size = action_size
         self.epsilon = epsilon
+        self.epsilon_min = epsilon_min
+        self.decay = epsilon_decay
         self.brain = brain
         self.batch_size = batch_size
         self.episodes = episodes
@@ -66,7 +70,9 @@ class DeepQAgent:
 
     def sufficient_experience(self):
         """Returns true once the replay buffer has a certain length."""
-        return len(self.memory) >= self.batch_size
+        if len(self.memory) == self.batch_size * 50:
+            print('Heureka, it is warm!')
+        return len(self.memory) >= self.batch_size * 50
 
     def learn(self):
         if not self.sufficient_experience():
@@ -88,11 +94,14 @@ class DeepQAgent:
             with tf.GradientTape() as tape:
 
                 # get max predicted Q values (for next states) from target model
-                next_q_values = tf.math.reduce_max(self.target_network(next_observations)) # axis=1
+                next_q_values = tf.stop_gradient(tf.math.reduce_max(self.target_network(next_observations))) # axis=1
+                q_values = tf.stop_gradient(tf.math.reduce_max(self.target_network(observations)))
 
                 # calculate the target values Q' with the Bellman equation (reward + gamma * q')
                 # targets = (reward + (1.0 - done) * self.gamma * next_q_values)
                 targets = tf.math.add(rewards, tf.math.multiply(self.gamma, next_q_values, (1 - dones)))
+
+                td_error = targets - q_values
 
                 # get expected q-values/predictions and compute MSE between target and expected
                 predictions =  tf.gather_nd(
@@ -101,16 +110,22 @@ class DeepQAgent:
 
                 loss = self.loss(predictions, targets)
 
-                # calculate gradients
-                gradients = tape.gradient(loss, self.q_network.trainable_variables)
-                self.optimizer.apply_gradients((zip(gradients, self.q_network.trainable_variables)))
+            # calculate gradients
+            gradients = tape.gradient(loss, self.q_network.trainable_variables)
+            self.optimizer.apply_gradients((zip(gradients, self.q_network.trainable_variables)))
 
             # self._soft_update_target_q_network_parameters()
         
-        return loss
+        return (loss, td_error, predictions)
 
     def update_target(self, mode):
         if mode == "hard":
             self.target_network.set_weights(self.q_network.get_weights())
         else:
             print("Update mode invalid! Must be 'hard'")
+
+    def decay_epsilon(self):
+        # in_epsilon + (max_epsilon - min_epsilon) * np.exp(-decay * episode)
+        # self.epsilon = 0.01 + (self.max_epsilon - 0.01) * np.exp(-self.decay * episode)
+        if self.epsilon > self.epsilon_min:
+            self.epsilon *= self.decay

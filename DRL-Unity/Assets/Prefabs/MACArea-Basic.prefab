@@ -1476,7 +1476,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 50000
+  MaxStep: 20000
   ground: {fileID: 7263114472888146670}
   area: {fileID: 7262242039899807204}
   goalA: {fileID: 7263068643119815300}

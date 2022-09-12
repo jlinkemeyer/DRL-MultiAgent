@@ -88,11 +88,11 @@ def train_single_agent(env_path, log_dir, config):
             observation = np.concatenate((observation[0], observation[1], observation[2]))
             observations.append(observation)
 
-        # TODO: move into loop
-        if episode % config['target_update_frequency'] == 0 and not episode == 0:
-            agent.update_target('hard')
-
         while not done:
+            # TODO: move into loop
+            if step % config['target_update_frequency'] == 0 and not episode == 0:
+                agent.update_target('hard')
+
             # choose greedy action based on Q(s, a; theta)
             actions = []
             for env_nr in range(config['n_envs']):
@@ -185,7 +185,7 @@ if __name__ == "__main__":
     config = {
         'buffer_size': 50000,
         'discount_rate': 0.99,
-        'number_of_episodes': 1000,
+        'number_of_episodes': 5000,
         'episode_length': 10,
         'action_size': 5,
         'batch_size': 128,

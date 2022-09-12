@@ -7,7 +7,7 @@ using Unity.MLAgents.Sensors;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
-public class MacAgent : Agent
+public class MacAgentBasic : Agent
 {
     public GameObject ground;
     public GameObject area;
@@ -36,7 +36,7 @@ public class MacAgent : Agent
     StatsRecorder m_statsRecorder;
     
     [HideInInspector]
-    public MacGoalDetect macGoalDetect;
+    public MacGoalDetectBasic macGoalDetect;
 
     private Vector3[] blockPositionMemory;
     private Vector3 agentPositionMemory;
@@ -53,7 +53,7 @@ public class MacAgent : Agent
         for (int i = 0; i < blocks.Length; i++)
         {
             blockPositionMemory[i] = blocks[i].transform.position;
-            macGoalDetect = blocks[i].GetComponent<MacGoalDetect>();
+            macGoalDetect = blocks[i].GetComponent<MacGoalDetectBasic>();
             macGoalDetect.agent = this;
         }
         agentPositionMemory = this.transform.position;
@@ -262,7 +262,7 @@ public class MacAgent : Agent
     public override void OnEpisodeBegin()
     {
         // Get a random goal:
-        int rdGoal = Random.Range(0, 4);
+        int rdGoal = 3; //Random.Range(0, 4);
         int numberGoals = 4;
         normalize = 1;
         for (int i = 0; i < numberGoals; i++)

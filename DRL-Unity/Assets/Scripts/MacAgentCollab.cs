@@ -7,7 +7,7 @@ using Unity.MLAgents.Sensors;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
-public class MacAgent : Agent
+public class MacAgentCollab : Agent
 {
     public GameObject ground;
     public GameObject area;
@@ -27,7 +27,7 @@ public class MacAgent : Agent
     public Material materialBlue;
     public GameObject[] blocks;
     public bool useVectorObs;
-    //public MacCommunicationAgent communicationAgent;
+    public MacCommunicationAgent communicationAgent;
     Rigidbody m_AgentRb;
     Material m_GroundMaterial;
     Renderer m_GroundRenderer;
@@ -44,8 +44,9 @@ public class MacAgent : Agent
     private GameObject[] instructions;
     private GameObject[] walls;
     private int normalize;
-
-    // TODO
+    
+    //List of Agents On Platform
+    
     public override void Initialize()
     {
         // Memorize the original block and agent positions for episode reset
@@ -54,7 +55,6 @@ public class MacAgent : Agent
         {
             blockPositionMemory[i] = blocks[i].transform.position;
             macGoalDetect = blocks[i].GetComponent<MacGoalDetect>();
-            macGoalDetect.agent = this;
         }
         agentPositionMemory = this.transform.position;
         
@@ -78,7 +78,7 @@ public class MacAgent : Agent
         {
             sensor.AddObservation(StepCount / (float)MaxStep);
         }
-        //sensor.AddObservation(communicationAgent.Communicate());
+        sensor.AddObservation(communicationAgent.Communicate());
     }
 
     // TODO: The ground material changes upon success or failure of the agent
@@ -312,19 +312,6 @@ public class MacAgent : Agent
         transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         m_AgentRb.velocity *= 0f;
 
-        // TODO
-        //m_statsRecorder.Add("Goal/Correct", 0, StatAggregationMethod.Sum);
-        //m_statsRecorder.Add("Goal/Wrong", 0, StatAggregationMethod.Sum);
     }
     
-    void OnCollisionEnter(Collision col)
-    {
-        // Enforce touching boxes in the beginning
-        /*if (col.gameObject.CompareTag("wall"))
-        {
-            AddReward(-0.1f);
-        }*/
-    }
 }
-
-

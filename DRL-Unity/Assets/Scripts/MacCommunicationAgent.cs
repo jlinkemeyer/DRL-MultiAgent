@@ -11,22 +11,12 @@ public class MacCommunicationAgent : Agent
 {
     public GameObject ground;
     public GameObject area;
-    public GameObject goalA;
-    public GameObject goalB;
-    public GameObject goalC;
-    public GameObject goalD;
-    public GameObject instructionA;
-    public GameObject instructionB;
-    public GameObject instructionC;
-    public GameObject instructionD;
-    public Material materialRed;
-    public Material materialBlue;
-    public GameObject[] blocks;
     public bool useVectorObs;
     Rigidbody m_AgentRb;
     Renderer m_GroundRenderer;
     MacSettings m_MACSettings;
     int m_Selection;
+    private Vector3 communicationVector;
 
     private Vector3[] blockPositionMemory;
     private Vector3 agentPositionMemory;
@@ -78,6 +68,44 @@ public class MacCommunicationAgent : Agent
         m_AgentRb.AddForce(dirToGo * m_MACSettings.agentRunSpeed, ForceMode.VelocityChange);
     }
     
+    public void Talk(ActionSegment<int> act)
+    {
+        var action = act[1];
+        communicationVector = new Vector3(0, 0, 0);
+        switch (action)
+        {
+            case 1:
+                communicationVector = new Vector3(0, 0, 0);
+                break;
+            case 2:
+                communicationVector = new Vector3(0, 0, 1);
+                break;
+            case 3:
+                communicationVector = new Vector3(0, 1, 0);
+                break;
+            case 4:
+                communicationVector = new Vector3(1, 0, 0);
+                break;
+            case 5:
+                communicationVector = new Vector3(0, 1, 1);
+                break;
+            case 6:
+                communicationVector = new Vector3(1, 0, 1);
+                break;
+            case 7:
+                communicationVector = new Vector3(1, 1, 0);
+                break;
+            case 8:
+                communicationVector = new Vector3(1, 1, 1);
+                break;
+        }
+    }
+
+    public Vector3 Communicate()
+    {
+        return communicationVector;
+    }
+    
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         var discreteActionsOut = actionsOut.DiscreteActions;
@@ -105,6 +133,7 @@ public class MacCommunicationAgent : Agent
     {
         AddReward(-1f / MaxStep);
         MoveAgent(actionBuffers.DiscreteActions);
+        Talk(actionBuffers.DiscreteActions);
     }
 
     // TODO Box is on goal position

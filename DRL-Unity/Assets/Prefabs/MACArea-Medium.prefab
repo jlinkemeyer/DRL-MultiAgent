@@ -1039,7 +1039,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8490386298777830668}
   m_Layer: 0
-  m_Name: MACArea-Step2
+  m_Name: MACArea-Medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1268,7 +1268,7 @@ GameObject:
   - component: {fileID: 8431614662349471746}
   - component: {fileID: 8384329962920502978}
   - component: {fileID: 8382677177621953608}
-  - component: {fileID: 4843422299269118033}
+  - component: {fileID: 8530316939370774302}
   - component: {fileID: 7430078888226781269}
   - component: {fileID: 4843422299269118039}
   - component: {fileID: 4843422299269118038}
@@ -1340,7 +1340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BrainParameters:
     VectorObservationSize: 1
-    NumStackedVectorObservations: 5
+    NumStackedVectorObservations: 3
     m_ActionSpec:
       m_NumContinuousActions: 0
       BranchSizes: 04000000
@@ -1348,7 +1348,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 5bc4f662809b36e4fa718669c38aa7ad, type: 3}
+  m_Model: {fileID: 0}
   m_InferenceDevice: 3
   m_BehaviorType: 0
   m_BehaviorName: Mac
@@ -1386,7 +1386,7 @@ MonoBehaviour:
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
   m_StartVerticalOffset: 0
   m_EndVerticalOffset: 0
---- !u!114 &4843422299269118033
+--- !u!114 &8530316939370774302
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1402,14 +1402,14 @@ MonoBehaviour:
   m_DetectableTags:
   - instructionRed
   - instructionBlue
-  m_RaysPerDirection: 3
-  m_MaxRayDegrees: 46.5
+  m_RaysPerDirection: 2
+  m_MaxRayDegrees: 70
   m_SphereCastRadius: 0.5
-  m_RayLength: 20
+  m_RayLength: 30
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967291
-  m_ObservationStacks: 1
+  m_ObservationStacks: 3
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
   m_StartVerticalOffset: 1.2

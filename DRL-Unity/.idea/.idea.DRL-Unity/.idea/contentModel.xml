@@ -83,6 +83,9 @@
             <e p="GridWorld_timers.json" t="Include" />
             <e p="Hallway_timers.json" t="Include" />
             <e p="MAC-2_timers.json" t="Include" />
+            <e p="MAC-Basic-1Area-BasicObservation_timers.json" t="Include" />
+            <e p="MAC-Basic-1Area_timers.json" t="Include" />
+            <e p="MAC-Basic-6Area_timers.json" t="Include" />
             <e p="MAC-TwoAgent_timers.json" t="Include" />
             <e p="MAC_timers.json" t="Include" />
             <e p="Match3_timers.json" t="Include" />
@@ -98,12 +101,14 @@
         <e p="Scripts" t="Include">
           <e p="MACAgent.cs" t="Include" />
           <e p="MacAgentBasic.cs" t="Include" />
+          <e p="MacAgentBasicObservation.cs" t="Include" />
           <e p="MacAgentCollab.cs" t="Include" />
           <e p="MacCommunicationAgent.cs" t="Include" />
           <e p="MacCustomTag.cs" t="Include" />
           <e p="MacDisableBlocks.cs" t="Include" />
           <e p="MACGoalDetect.cs" t="Include" />
           <e p="MacGoalDetectBasic.cs" t="Include" />
+          <e p="MacGoalDetectBasicObservation.cs" t="Include" />
           <e p="MacGoalWasHit.cs" t="Include" />
           <e p="MACSettings.cs" t="Include" />
         </e>

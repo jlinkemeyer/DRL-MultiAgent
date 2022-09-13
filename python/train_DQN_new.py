@@ -91,7 +91,7 @@ def train_single_agent(env_path, log_dir, config):
         # TODO: move into loop
         if episode % config['target_update_frequency'] == 0 and not episode == 0:
             agent.update_target('hard')
-
+            
         while not done:
             # choose greedy action based on Q(s, a; theta)
             actions = []
@@ -152,11 +152,13 @@ def train_single_agent(env_path, log_dir, config):
 
             step += 1
 
+        """
         try:
             print('td_error: ', td_error)
             print('predictions: ', predictions)
         except:
             pass
+        """
 
         returns.append(reward_sum)
         mean_reward = np.mean(np.array(returns))
@@ -174,7 +176,7 @@ if __name__ == "__main__":
     parser.add_argument("--agent_mode", nargs="?", type=str, 
         default="single", help="Either 'single' or 'multi'")
     parser.add_argument("--env_path", nargs="?", type=str, 
-        default="./builds/Build2022_1", help="Path to Unity Exe")
+        default="./builds/Windows_NewReward", help="Path to Unity Exe")
     parser.add_argument("--log_dir", nargs="?", type=str, 
         default="./logs", help="Path directory where log files are stored")
     args = parser.parse_args()
@@ -183,7 +185,7 @@ if __name__ == "__main__":
     config = {
         'buffer_size': 50000,
         'discount_rate': 0.99,
-        'number_of_episodes': 500,
+        'number_of_episodes': 5000,
         'episode_length': 10,
         'action_size': 5,
         'batch_size': 128,

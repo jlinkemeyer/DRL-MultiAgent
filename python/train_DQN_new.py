@@ -2,12 +2,14 @@ import argparse
 import progressbar as pb
 import numpy as np
 import tensorflow as tf
+import matplotlib.pyplot as plt
 from tensorboardX import SummaryWriter
 from collections import deque
 
 from mlagents_envs.environment import UnityEnvironment, ActionTuple
 from mlagents_envs.side_channel.engine_configuration_channel import EngineConfigurationChannel
 from DQN_agent import DeepQAgent
+from DDQN_agent import DoubleDeepQAgent
 
 
 # TODO: adjust for multi-agent
@@ -25,7 +27,7 @@ def setup_environment(file_name, log_dir, verbose=True):
         seed=1,
         side_channels=[channel],
         log_folder=log_dir,
-        no_graphics=False
+        no_graphics=True
     )
     channel.set_configuration_parameters(time_scale=2.0)
     env.reset()
@@ -51,7 +53,7 @@ def train_single_agent(env_path, log_dir, config):
     env, behavior_name, agent_spec = setup_environment(env_path, log_dir, verbose=True)
 
     # create DQN agent
-    agent = DeepQAgent(
+    agent = DoubleDeepQAgent(
         config['action_size'], 
         config['state_size'], 
         epsilon=config['epsilon'], 
@@ -64,8 +66,9 @@ def train_single_agent(env_path, log_dir, config):
         gamma=config['discount_rate'])
 
     # set up cumulative rewards
-    returns = []
+    scores = deque(maxlen=100)
     losses = []
+    means = []
 
     # TODO: move inside loop?
     step = 0
@@ -80,19 +83,18 @@ def train_single_agent(env_path, log_dir, config):
         decision_steps, terminal_steps = env.get_steps(behavior_name)
         done = False 
         tracked_agent = -1
-        reward_sum = 0
+        score = 0
 
         observations = []
         for env_nr in range (config['n_envs']):
             observation = decision_steps[env_nr].obs
             observation = np.concatenate((observation[0], observation[1], observation[2]))
             observations.append(observation)
-
-        # TODO: move into loop
-        if episode % config['target_update_frequency'] == 0 and not episode == 0:
-            agent.update_target('hard')
             
         while not done:
+            if step % config['target_update_frequency'] == 0 and agent.sufficient_experience():
+                agent.update_target('hard')
+                print("--------->TARGET UPDATE")
             # choose greedy action based on Q(s, a; theta)
             actions = []
             for env_nr in range(config['n_envs']):
@@ -136,7 +138,7 @@ def train_single_agent(env_path, log_dir, config):
 
                 reward_all_areas += reward
 
-            reward_sum += reward_all_areas / config['n_envs']
+            score += reward_all_areas / config['n_envs']
             observations = next_observations
 
             # if target update frequency: update target network -> TODO: make it work inside the loop
@@ -160,10 +162,51 @@ def train_single_agent(env_path, log_dir, config):
             pass
         """
 
-        returns.append(reward_sum)
-        mean_reward = np.mean(np.array(returns))
+        scores.append(score)
+        mean_reward = np.mean(np.array(scores))
+        means.append(mean_reward)
         losses.append(loss)
-        print(f" -- episode: {episode} | reward: {reward_sum} | mean reward: {mean_reward} | loss: {loss} | eps: {agent.epsilon}")
+        print(f" -- episode: {episode} | score: {score} | mean reward: {mean_reward} | loss: {loss}")
+
+        if episode % config['plot_frequency'] == 0 and episode > 0:
+            x = np.arange(episode + 1)
+
+            try:
+                plt.figure()
+                plt.plot(x, means, color='darkblue')
+                plt.title('Mean Reward')
+                plt.xlabel('Episode')
+                plt.ylabel('Mean Reward')
+                plt.savefig(f'./output/mean_reward_episode_{episode}.png')
+            except ValueError:
+                pass
+
+
+            try:
+                plt.figure()
+                x_values = np.arange(len(scores))
+                plt.plot(x_values, scores, color='darkblue', alpha=0.5)
+                plt.plot(x_values, means, color='darkblue')
+                plt.title('Scores')
+                plt.xlabel('Episode')
+                plt.ylabel('Score')
+                plt.savefig(f'./output/score_episode_{episode}.png')
+            except ValueError:
+                pass
+
+            try:
+                plt.figure()
+                plt.plot(x, losses, color='darkblue')
+                plt.title('Loss')
+                plt.xlabel('Episode')
+                plt.ylabel('MSE Loss')
+                plt.savefig(f'./output/loss_episode_{episode}.png')
+            except ValueError:
+                pass
+
+        if episode % config['save_frequency'] == 0 and episode > 0:
+            agent.q_network.save(f'./models/q_network_ep_{episode}')
+
 
         #agent.decay_epsilon()
 
@@ -176,7 +219,7 @@ if __name__ == "__main__":
     parser.add_argument("--agent_mode", nargs="?", type=str, 
         default="single", help="Either 'single' or 'multi'")
     parser.add_argument("--env_path", nargs="?", type=str, 
-        default="./builds/Windows_NewReward", help="Path to Unity Exe")
+        default="./builds/Newest", help="Path to Unity Exe")
     parser.add_argument("--log_dir", nargs="?", type=str, 
         default="./logs", help="Path directory where log files are stored")
     args = parser.parse_args()
@@ -186,18 +229,18 @@ if __name__ == "__main__":
         'buffer_size': 50000,
         'discount_rate': 0.99,
         'number_of_episodes': 5000,
-        'episode_length': 10,
         'action_size': 5,
         'batch_size': 128,
-        'learn_steps_per_env_step': 3,
         'state_size': 108, 
         'train_frequency': 5,
-        'target_update_frequency': 10,
+        'target_update_frequency': 5000,
         'train_episodes': 3,
         'n_envs': 1,
         'epsilon': 0.1,
         'epsilon_min': 0.001,
-        'epsilon_decay': 0.9
+        'epsilon_decay': 0.9,
+        'plot_frequency': 50,
+        'save_frequency': 10
     }
 
     if (args.agent_mode == "single"):

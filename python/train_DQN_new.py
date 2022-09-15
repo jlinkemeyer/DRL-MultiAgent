@@ -5,6 +5,7 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 from tensorboardX import SummaryWriter
 from collections import deque
+import matplotlib.pyplot as plt
 
 from mlagents_envs.environment import UnityEnvironment, ActionTuple
 from mlagents_envs.side_channel.engine_configuration_channel import EngineConfigurationChannel
@@ -49,7 +50,7 @@ def setup_environment(file_name, log_dir, verbose=True):
     return env, behavior_name, agent_spec 
 
 
-def train_single_agent(env_path, log_dir, config):
+def train_single_agent(env_path, log_dir, incr_batch, decr_lr, config):
     env, behavior_name, agent_spec = setup_environment(env_path, log_dir, verbose=True)
 
     # create DQN agent
@@ -63,21 +64,31 @@ def train_single_agent(env_path, log_dir, config):
         buffer_size=config['buffer_size'], 
         batch_size=config['batch_size'],
         episodes=config['train_episodes'],
-        gamma=config['discount_rate'])
+        gamma=config['discount_rate'],
+        alpha=config['learning_rate'],
+        batch_factor=config['batch_factor'],
+        lr_decay_steps=config['lr_decay_steps'],
+        lr_decay_rate=config['lr_decay_rate']
+        )
 
     # set up cumulative rewards
     scores = deque(maxlen=100)
-    losses = []
     means = []
+    losses = []
+    if incr_batch:
+        batch_sizes = []
+        batch_size = config['batch_size']
+    if decr_lr:
+        learn_rates = []
+        learn_rate = config['learning_rate']
 
     # TODO: move inside loop?
     step = 0
     loss = -1
+    batch_bool = False
 
     # training loop
     for episode in range(config['number_of_episodes']):
-
-        # print(f'EPISODE {episode}')
 
         env.reset()
         decision_steps, terminal_steps = env.get_steps(behavior_name)
@@ -90,11 +101,16 @@ def train_single_agent(env_path, log_dir, config):
             observation = decision_steps[env_nr].obs
             observation = np.concatenate((observation[0], observation[1], observation[2]))
             observations.append(observation)
+
+        if incr_batch and episode % config['batch_incr_freq'] == 0 and not episode == 0:
+            batch_size = batch_size * config['batch_factor']
+            batch_bool = True
             
         while not done:
             if step % config['target_update_frequency'] == 0 and agent.sufficient_experience():
                 agent.update_target('hard')
                 print("--------->TARGET UPDATE")
+                
             # choose greedy action based on Q(s, a; theta)
             actions = []
             for env_nr in range(config['n_envs']):
@@ -147,10 +163,13 @@ def train_single_agent(env_path, log_dir, config):
 
             # if udate frequency: train q-network
             if step % config['train_frequency'] == 0:
-                output = agent.learn()
+                output = agent.learn(batch_bool, decr_lr)
+                batch_bool = False
 
                 if output:
                     loss, td_error, predictions = output
+                    if decr_lr:
+                        learn_rate = config['learning_rate'] * (config['lr_decay_rate'] ** (step / config['lr_decay_steps']))
 
             step += 1
 
@@ -166,6 +185,10 @@ def train_single_agent(env_path, log_dir, config):
         mean_reward = np.mean(np.array(scores))
         means.append(mean_reward)
         losses.append(loss)
+        if incr_batch:
+            batch_sizes.append(batch_size)
+        if decr_lr:
+            learn_rates.append(learn_rate)
         print(f" -- episode: {episode} | score: {score} | mean reward: {mean_reward} | loss: {loss}")
 
         if episode % config['plot_frequency'] == 0 and episode > 0:
@@ -180,7 +203,6 @@ def train_single_agent(env_path, log_dir, config):
                 plt.savefig(f'./output/mean_reward_episode_{episode}.png')
             except ValueError:
                 pass
-
 
             try:
                 plt.figure()
@@ -204,9 +226,27 @@ def train_single_agent(env_path, log_dir, config):
             except ValueError:
                 pass
 
-        if episode % config['save_frequency'] == 0 and episode > 0:
-            agent.q_network.save(f'./models/q_network_ep_{episode}')
+            if incr_batch:
+                try:
+                    plt.figure()
+                    plt.plot(x, batch_sizes, color='darkblue')
+                    plt.title('Batch Size')
+                    plt.xlabel('Episode')
+                    plt.ylabel('Batch Size')
+                    plt.savefig(f'./output/batch_size_episode_{episode}.png')
+                except ValueError:
+                    pass
 
+            if decr_lr:
+                try:
+                    plt.figure()
+                    plt.plot(x, learn_rates, color='darkblue')
+                    plt.title('Learning Rate')
+                    plt.xlabel('Episode')
+                    plt.ylabel('Learning Rate')
+                    plt.savefig(f'./output/learn_rate_episode_{episode}.png')
+                except ValueError:
+                    pass
 
         #agent.decay_epsilon()
 
@@ -222,11 +262,16 @@ if __name__ == "__main__":
         default="./builds/Newest", help="Path to Unity Exe")
     parser.add_argument("--log_dir", nargs="?", type=str, 
         default="./logs", help="Path directory where log files are stored")
+    parser.add_argument("--incr_batch", nargs="?", type=bool, 
+        default=False, help="Whether to gradually increase the batch size, either 'True' or 'False'")
+    parser.add_argument("--decr_lr", nargs="?", type=bool, 
+        default=False, help="Whether to gradually decay the learning rate, either 'True' or 'False'")
     args = parser.parse_args()
 
     # TODO: read configs from file instead of hardcoding
     config = {
         'buffer_size': 50000,
+        'learning_rate': 0.001,
         'discount_rate': 0.99,
         'number_of_episodes': 5000,
         'action_size': 5,
@@ -240,11 +285,15 @@ if __name__ == "__main__":
         'epsilon_min': 0.001,
         'epsilon_decay': 0.9,
         'plot_frequency': 50,
-        'save_frequency': 10
+        'save_frequency': 10,
+        'batch_incr_freq': 30,
+        'batch_factor': 2,
+        'lr_decay_steps': 10000,
+        'lr_decay_rate': 0.98
     }
 
     if (args.agent_mode == "single"):
-        train_single_agent(args.env_path, args.log_dir, config)
+        train_single_agent(args.env_path, args.log_dir, args.incr_batch, args.decr_lr, config)
     elif (args.agent_mode == "multi"):
         raise NotImplementedError
     else:

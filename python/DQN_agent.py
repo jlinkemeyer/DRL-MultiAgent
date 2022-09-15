@@ -19,7 +19,11 @@ class DeepQAgent:
         buffer_size,
         batch_size,
         episodes,
-        gamma
+        gamma,
+        alpha,
+        batch_factor,
+        lr_decay_steps,
+        lr_decay_rate
         ):
 
         # set action and state size
@@ -31,6 +35,10 @@ class DeepQAgent:
         self.batch_size = batch_size
         self.episodes = episodes
         self.gamma = gamma
+        self.alpha = alpha
+        self.batch_factor = batch_factor
+        self.lr_decay_steps = lr_decay_steps
+        self.lr_decay_rate = lr_decay_rate
 
         # set random seeds
         # initialize agent hyperparams
@@ -46,7 +54,7 @@ class DeepQAgent:
         self.update_target("hard")
 
         # set optimizer and loss
-        self.optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)
+        #self.optimizer = tf.keras.optimizers.Adam(learning_rate=alpha)
         self.loss = tf.losses.MeanSquaredError()
 
     def choose_action(self, observation):
@@ -74,10 +82,13 @@ class DeepQAgent:
             print('Heureka, it is warm!')
         return len(self.memory) >= self.batch_size * 50
 
-    def learn(self):
+    def learn(self, incr_batch, decr_lr):
         if not self.sufficient_experience():
                 return
         
+        if incr_batch:
+            self.batch_size = self.batch_size * self.batch_factor
+
         loss = -1
         for _ in range(self.episodes):
 
@@ -112,7 +123,17 @@ class DeepQAgent:
 
             # calculate gradients
             gradients = tape.gradient(loss, self.q_network.trainable_variables)
-            self.optimizer.apply_gradients((zip(gradients, self.q_network.trainable_variables)))
+            
+            if decr_lr:
+                lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
+                                self.alpha,
+                                decay_steps=self.lr_decay_steps,
+                                decay_rate=self.lr_decay_rate,
+                                staircase=True)
+                optimizer = tf.keras.optimizers.Adam(learning_rate=lr_schedule)
+            else:
+                optimizer = tf.keras.optimizers.Adam(learning_rate=self.alpha)
+            optimizer.apply_gradients((zip(gradients, self.q_network.trainable_variables)))
 
             # self._soft_update_target_q_network_parameters()
         

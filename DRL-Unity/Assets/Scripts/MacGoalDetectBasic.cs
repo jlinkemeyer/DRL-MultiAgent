@@ -50,7 +50,7 @@ public class MacGoalDetectBasic : MonoBehaviour
                 // Remove the tag of the goal such that the agent cannot score in that goal again
                 col.gameObject.GetComponent<MacCustomTag>().UpdateCustomTag("");
                 // negative reward for wrong goal (small positive)
-                agent.ScoredAGoal(col,  0f);
+                agent.ScoredAGoal(col,  -0.1f);
             }
         }
     }

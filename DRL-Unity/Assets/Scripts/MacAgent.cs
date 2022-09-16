@@ -316,15 +316,6 @@ public class MacAgent : Agent
         //m_statsRecorder.Add("Goal/Correct", 0, StatAggregationMethod.Sum);
         //m_statsRecorder.Add("Goal/Wrong", 0, StatAggregationMethod.Sum);
     }
-    
-    void OnCollisionEnter(Collision col)
-    {
-        // Enforce touching boxes in the beginning
-        /*if (col.gameObject.CompareTag("wall"))
-        {
-            AddReward(-0.1f);
-        }*/
-    }
 }
 
 

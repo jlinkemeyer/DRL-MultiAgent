@@ -2,13 +2,16 @@ import argparse
 import progressbar as pb
 import numpy as np
 import tensorflow as tf
+import matplotlib.pyplot as plt
 from tensorboardX import SummaryWriter
 from collections import deque
+import matplotlib.pyplot as plt
 
 from mlagents_envs.environment import UnityEnvironment, ActionTuple
+from mlagents_envs.side_channel.engine_configuration_channel import EngineConfigurationChannel
+from DQN_agent import DeepQAgent
+from DDQN_agent import DoubleDeepQAgent
 
-from agent import DDPGAgent
-from buffer import ReplayBuffer
 
 # TODO: adjust for multi-agent
 def setup_environment(file_name, log_dir, verbose=True):
@@ -16,13 +19,18 @@ def setup_environment(file_name, log_dir, verbose=True):
     Creates UnityEnvironment object from Unity environment binary
     and extracts 
     """
+
+    channel = EngineConfigurationChannel()
+
     # create environment
     env = UnityEnvironment(
         file_name,
         seed=1,
-        side_channels=[],
-        log_folder=log_dir
+        side_channels=[channel],
+        log_folder=log_dir,
+        no_graphics=False
     )
+    channel.set_configuration_parameters(time_scale=10.0)
     env.reset()
 
     # get behavior and agent spec
@@ -42,84 +50,192 @@ def setup_environment(file_name, log_dir, verbose=True):
     return env, behavior_name, agent_spec 
 
 
-def train_single_agent(env_path, log_dir, config):
+def train_single_agent(env_path, log_dir, incr_batch, decr_lr, config):
+    """
+    Training function. Contains the main training loop.
+
+    :param env_path: Path to the Unity executable
+    :param log_dir: directory to save console logs in
+    :param incr_batch:
+    :param decr_lr:
+    :param config: training configuration information
+    :return:
+    """
+    # Use the gym wrapper to create a controllable environment
     env, behavior_name, agent_spec = setup_environment(env_path, log_dir, verbose=True)
 
-    # read/set hyperparameters
-    # set random seed
-    # set save interval
-    # set noise
+    # Create an agent with given parameters
+    agent = DoubleDeepQAgent(
+        config['action_size'], 
+        config['state_size'], 
+        epsilon=config['epsilon'], 
+        epsilon_min=config['epsilon_min'],
+        epsilon_decay=config['epsilon_decay'],
+        brain=agent_spec,
+        buffer_size=config['buffer_size'], 
+        batch_size=config['batch_size'],
+        epochs=config['train_epochs'],
+        gamma=config['discount_rate'],
+        alpha=config['learning_rate'],
+        batch_factor=config['batch_factor'],
+        decr_lr=decr_lr,
+        lr_decay_steps=config['lr_decay_steps'],
+        lr_decay_rate=config['lr_decay_rate']
+    )
 
-    # setup performance metrics
-    agent_scores = []
-    agent_scores_last_100 = deque(maxlen = 100)
-    agent_scores_avg, previous_agent_scores_avg = np.zeros(1), np.zeros(1)
+    # set up cumulative rewards
+    returns = deque(maxlen=100)
+    means = []
+    losses = []
+    if incr_batch:
+        batch_sizes = []
+        batch_size = config['batch_size']
+    if decr_lr:
+        learn_rates = []
+        learn_rate = config['learning_rate']
 
-    # create model directory
+    # TODO: move inside loop?
+    step = 0
+    loss = -1
+    batch_bool = False
 
-    env.reset()
-    buffer = ReplayBuffer(size=config['buffer_size'], n_steps=config['n_steps'], 
-        discount_rate=config['discount_rate'])
-    agent = DDPGAgent(action_size=config['action_size'])
-
-    logger = SummaryWriter(logdir=log_dir)
-    # widget = ['episode: ', pb.Counter(), '/', str(config['number_of_episodes']), ' ',
-    #     pb.DynamicMessage('avg_score'), ' ',
-    #     pb.DynamicMessage('buffer_size'), ' ',
-    #     pb.ETA(), ' ',
-    #     pb.Bar(marker=pb.RotatingMarker()), ' ']
-    # timer = pb.ProgressBar(widgets=widget, maxval=config['number_of_episodes']).start()
-
-    # training loop
+    # Main training loop - generate one episode per iteration
     for episode in range(config['number_of_episodes']):
-        # timer.update(episode, avg_score=agent_scores_avg, buffer_size=len(buffer))
-        # reset n-step bootstraps after every episode
-        buffer.reset()
-        decision_steps, terminal_steps = env.get_steps(behavior_name)
-        tracked_agent = -1
-        reward_current_episode = np.zeros(1)
-        done = False
 
+        # Start episode by resetting environment (set agent to initial position, random goal position, random
+        # instruction (score with red or blue) and initializing sum of rewards
+        env.reset()
+        decision_steps, _ = env.get_steps(behavior_name)
+        reward_sum = 0
+        tracked_agent = -1  # The tracked agent in the scene
+
+        # Get the current observation of the agent
         observation = decision_steps[0].obs
-        observation = np.concatenate((observation[0], observation[1]))
+        observation = np.concatenate((observation[0], observation[1], observation[2]))  # TODO
 
-        # for t in range(config['episode_length']):
-        while not done:
+        # TODO (batch increase also in learn function?)
+        if incr_batch and episode % config['batch_incr_freq'] == 0 and not episode == 0:
+            agent.increase_batch_size()
+            
+        while True:
+            # Update the target network in the set update frequency, but only if there are enough samples in the replay
+            # buffer since else no weight updates took place yet
+            if step % config['target_update_frequency'] == 0 and agent.sufficient_experience():
+                agent.update_target('hard')
+                print("--------->TARGET UPDATE")
+
+            # Access the current agent in the scene
             if tracked_agent == -1 and len(decision_steps) >= 1:
                 tracked_agent = decision_steps.agent_id[0]
 
-            # take action
-            action = agent.act(tf.expand_dims(observation, 0))
+            # Determine the action based on the observation
+            action = agent.choose_action(tf.expand_dims(observation, 0))
             action_tuple = ActionTuple()
             action_tuple.add_discrete(action)
+
+            # Perform the determined action
             env.set_actions(behavior_name, action_tuple)
             env.step()
 
-            # get next observation, reward and done info
+            # Store the reward for the action and the next observation
             decision_steps, terminal_steps = env.get_steps(behavior_name)
-
             if tracked_agent in decision_steps:
                 next_observation = decision_steps[tracked_agent].obs
                 reward = decision_steps[tracked_agent].reward
             if tracked_agent in terminal_steps:
                 next_observation = terminal_steps[tracked_agent].obs
                 reward = terminal_steps[tracked_agent].reward
-            done = tracked_agent in terminal_steps
+            done = tracked_agent in terminal_steps  # Check whether the environment is marked as done
 
-            # add data to buffer
-            transition = ([observation, action, reward, next_observation, done])
-            buffer.push(transition)
+            # Get the next observation
+            next_observation = np.concatenate((next_observation[0], next_observation[1], next_observation[2]))
 
-            observation = np.concatenate((next_observation[0], next_observation[1]))
+            # Add transition to replay buffer
+            agent.memory.push(observation, action, reward, next_observation, done)
 
-        # update episode scores
+            # set new observation to current observation for determining next action
+            observation = next_observation
 
-        # train agent
+            # Update sum of rewards
+            reward_sum += reward
+
+            # Train q-network according to training frequency, but only if the memory buffer contains enough samples
+            if step % config['train_frequency'] == 0:
+                if agent.sufficient_experience():
+                    l = []
+                    for _ in range(agent.epochs):
+                        l.append(agent.learn())
+                    loss = np.mean(np.array(l))
+
+            step += 1
+
+            # Break when the end of an episode is reached
+            if done:
+                break
+
+        # Update all lists to track progress over time
+        returns.append(reward_sum)
+        mean_reward = np.mean(np.array(returns))
+        means.append(mean_reward)
+        # Track progress
+        losses.append(loss)
+        if decr_lr:
+            learn_rates.append(agent.get_learning_rate())  # TODO this might crash
+        if incr_batch:
+            batch_sizes.append(agent.get_batch_size())
+        print(f" -- episode: {episode} | reward sum: {reward_sum} | mean reward: {mean_reward} | loss: {loss}")
+
+        # Create plots to allow visual progress tracking
+        if episode % config['plot_frequency'] == 0 and episode > 0:
+            x = np.arange(episode + 1)
+
+            visualize(data=means,
+                      save_path=f'./output/mean_reward_episode_{episode}.png',
+                      title='Mean Reward')
+
+            visualize(data=means,
+                      save_path=f'./output/score_episode_{episode}.png',
+                      title='Scores',
+                      data2=returns)
+
+            visualize(data=losses,
+                      save_path=f'./output/loss_episode_{episode}.png',
+                      title='MSE Loss')
+
+            if incr_batch:
+                visualize(data=batch_sizes, save_path=f'./output/batch_size_episode_{episode}.png', title='Batch size')
+
+            if decr_lr:
+                visualize(data=learn_rates,
+                          save_path=f'./output/learn_rate_episode_{episode}.png',
+                          title='Learning rate')
+
+        #agent.decay_epsilon()
 
     env.close()
-    logger.close()
 
-        
+
+def visualize(data, title, save_path, data2=None):
+    """
+
+    :param data:
+    :param title:
+    :param save_path:
+    :param data2:
+    :return:
+    """
+    try:
+        plt.figure()
+        plt.plot(data, color='darkblue')
+        if data2:
+            plt.plot(data2, color='darkblue', alpha=0.5)
+        plt.title(title)
+        plt.xlabel('Episode')
+        plt.ylabel(title)
+        plt.savefig(save_path)
+        plt.close()
+    except ValueError:
+        pass
 
 if __name__ == "__main__":
 
@@ -127,26 +243,42 @@ if __name__ == "__main__":
     parser.add_argument("--agent_mode", nargs="?", type=str, 
         default="single", help="Either 'single' or 'multi'")
     parser.add_argument("--env_path", nargs="?", type=str, 
-        default="./builds/DRL-Unity_Windows_x86_64", help="Path to Unity Exe")
+        default="./builds/Newest", help="Path to Unity Exe")
     parser.add_argument("--log_dir", nargs="?", type=str, 
         default="./logs", help="Path directory where log files are stored")
+    parser.add_argument("--incr_batch", nargs="?", type=bool, 
+        default=False, help="Whether to gradually increase the batch size, either 'True' or 'False'")
+    parser.add_argument("--decr_lr", nargs="?", type=bool, 
+        default=False, help="Whether to gradually decay the learning rate, either 'True' or 'False'")
     args = parser.parse_args()
 
     # TODO: read configs from file instead of hardcoding
     config = {
         'buffer_size': 50000,
-        'n_steps': 5,
+        'learning_rate': 0.001,
         'discount_rate': 0.99,
-        'number_of_episodes': 1,
-        'episode_length': 10,
-        'action_size': 5
+        'number_of_episodes': 5000,
+        'action_size': 5,
+        'batch_size': 256,
+        'state_size': 108, 
+        'train_frequency': 5,
+        'target_update_frequency': 5000,
+        'train_epochs': 3,
+        'n_envs': 1,
+        'epsilon': 0.1,
+        'epsilon_min': 0.001,
+        'epsilon_decay': 0.99,
+        'plot_frequency': 50,
+        'save_frequency': 10,
+        'batch_incr_freq': 100,
+        'batch_factor': 2,
+        'lr_decay_steps': 10000,
+        'lr_decay_rate': 0.99
     }
 
-    if (args.agent_mode == "single"):
-        train_single_agent(args.env_path, args.log_dir, config)
-    elif (args.agent_mode == "multi"):
+    if args.agent_mode == "single":
+        train_single_agent(args.env_path, args.log_dir, args.incr_batch, args.decr_lr, config)
+    elif args.agent_mode == "multi":
         raise NotImplementedError
     else:
         print(f"Agent mode {args.agent_mode} invalid! Must be 'single' or 'multi'")
-
-

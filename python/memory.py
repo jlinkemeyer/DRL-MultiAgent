@@ -3,6 +3,7 @@ import random
 import tensorflow as tf
 import numpy as np
 
+
 class ExperienceReplayBuffer():
 
     def __init__(self, capacity):

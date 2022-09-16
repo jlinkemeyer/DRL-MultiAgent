@@ -1,0 +1,22 @@
+Mono path[0] = 'C:/Users/Johanna/PycharmProjects/DRL/DRL-MultiAgent/python/builds/Newest/DRL-Unity_Data/Managed'
+Mono config path = 'C:/Users/Johanna/PycharmProjects/DRL/DRL-MultiAgent/python/builds/Newest/MonoBleedingEdge/etc'
+Found 2 interfaces on host : 0) 192.168.56.1 1) 192.168.178.20
+Multi-casting "[IP] 192.168.56.1 [Port] 55263 [Flags] 2 [Guid] 802841713 [EditorId] 3824887604 [Version] 1048832 [Id] WindowsPlayer(2,DESKTOP-C43PV50) [Debug] 1 [PackageName] WindowsPlayer [ProjectName] DRL-Unity" to [225.0.0.222:54997]...
+Starting managed debugger on port 56713
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=0.0.0.0:56713
+Initialize engine version: 2021.3.8f1 (b30333d56e81)
+[Subsystems] Discovering subsystems at path C:/Users/Johanna/PycharmProjects/DRL/DRL-MultiAgent/python/builds/Newest/DRL-Unity_Data/UnitySubsystems
+GfxDevice: creating device client; threaded=1; jobified=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) UHD Graphics 620 (ID=0x5917)
+    Vendor:   Intel
+    VRAM:     8113 MB
+    Driver:   24.20.100.6195
+Begin MonoManager ReloadAssembly
+- Completed reload, in  0.287 seconds
+<RI> Initializing input.
+XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.030300 ms

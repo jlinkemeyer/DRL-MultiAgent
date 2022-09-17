@@ -30,7 +30,7 @@ def setup_environment(file_name, log_dir, verbose=True):
         log_folder=log_dir,
         no_graphics=False
     )
-    channel.set_configuration_parameters(time_scale=10.0)
+    channel.set_configuration_parameters(time_scale=2.0)
     env.reset()
 
     # get behavior and agent spec
@@ -129,9 +129,22 @@ def train_single_agent(env_path, log_dir, incr_batch, decr_lr, config):
                 tracked_agent = decision_steps.agent_id[0]
 
             # Determine the action based on the observation
-            action = agent.choose_action(tf.expand_dims(observation, 0))
+            # action = agent.choose_action(tf.expand_dims(observation, 0))
+            # action_tuple = ActionTuple()
+            # action_tuple.add_discrete(action)
+
+            # --------------
+            # choose greedy action based on Q(s, a; theta)
+            actions = []
+            for env_nr in range(config['n_envs']):
+                action = agent.choose_action(tf.expand_dims(observation, 0))
+                actions.append(action)
+            actions = [np.squeeze(action) for action in actions]
+            actions = np.array(actions)
+            actions = np.expand_dims(actions, 1)
             action_tuple = ActionTuple()
-            action_tuple.add_discrete(action)
+            action_tuple.add_discrete(actions)
+            # ---------------
 
             # Perform the determined action
             env.set_actions(behavior_name, action_tuple)
@@ -146,6 +159,9 @@ def train_single_agent(env_path, log_dir, incr_batch, decr_lr, config):
                 next_observation = terminal_steps[tracked_agent].obs
                 reward = terminal_steps[tracked_agent].reward
             done = tracked_agent in terminal_steps  # Check whether the environment is marked as done
+
+            if reward == -0.1:
+                reward = 0
 
             # Get the next observation
             next_observation = np.concatenate((next_observation[0], next_observation[1], next_observation[2]))
@@ -173,6 +189,8 @@ def train_single_agent(env_path, log_dir, incr_batch, decr_lr, config):
             if done:
                 break
 
+        agent.decay_epsilon()
+
         # Update all lists to track progress over time
         returns.append(reward_sum)
         mean_reward = np.mean(np.array(returns))
@@ -183,7 +201,7 @@ def train_single_agent(env_path, log_dir, incr_batch, decr_lr, config):
             learn_rates.append(agent.get_learning_rate())  # TODO this might crash
         if incr_batch:
             batch_sizes.append(agent.get_batch_size())
-        print(f" -- episode: {episode} | reward sum: {reward_sum} | mean reward: {mean_reward} | loss: {loss}")
+        print(f" -- episode: {episode} | reward sum: {reward_sum} | mean reward sum: {mean_reward} | loss: {loss}")
 
         # Create plots to allow visual progress tracking
         if episode % config['plot_frequency'] == 0 and episode > 0:
@@ -210,19 +228,17 @@ def train_single_agent(env_path, log_dir, incr_batch, decr_lr, config):
                           save_path=f'./output/learn_rate_episode_{episode}.png',
                           title='Learning rate')
 
-        #agent.decay_epsilon()
-
     env.close()
 
 
 def visualize(data, title, save_path, data2=None):
     """
+    Visualizes one-dimensional data in a plot
 
-    :param data:
-    :param title:
-    :param save_path:
-    :param data2:
-    :return:
+    :param data: 1-d array or list
+    :param title: title is used for the plot and y-axis description
+    :param save_path: path where to save the plot as a .png file
+    :param data2: special case when two arrays should be plotted in the same image # TODO not working properly
     """
     try:
         plt.figure()
@@ -237,8 +253,10 @@ def visualize(data, title, save_path, data2=None):
     except ValueError:
         pass
 
+
 if __name__ == "__main__":
 
+    # Input arguments
     parser = argparse.ArgumentParser()
     parser.add_argument("--agent_mode", nargs="?", type=str, 
         default="single", help="Either 'single' or 'multi'")
@@ -276,6 +294,8 @@ if __name__ == "__main__":
         'lr_decay_rate': 0.99
     }
 
+    # Calling different training functions depending on which agent mode (single- or multi-agent) is chosen by the user.
+    # Currently, only 'single' is possible. Due to time constraints, the 'multi' option is not implemented
     if args.agent_mode == "single":
         train_single_agent(args.env_path, args.log_dir, args.incr_batch, args.decr_lr, config)
     elif args.agent_mode == "multi":

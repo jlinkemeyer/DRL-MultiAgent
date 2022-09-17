@@ -406,11 +406,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7302205784959494938, guid: 08ae180dc88d74c47845d9e5a3278598, type: 3}
       propertyPath: m_BrainParameters.VectorActionSize.Array.data[0]
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7302205784959494938, guid: 08ae180dc88d74c47845d9e5a3278598, type: 3}
       propertyPath: m_BrainParameters.m_ActionSpec.BranchSizes.Array.data[0]
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7452468764746674887, guid: 08ae180dc88d74c47845d9e5a3278598, type: 3}
       propertyPath: MaxStep

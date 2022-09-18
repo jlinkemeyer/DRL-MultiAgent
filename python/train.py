@@ -66,8 +66,7 @@ def train_single_agent(env_path, log_dir, incr_batch, decr_lr, config):
 
     # Create an agent with given parameters
     agent = DoubleDeepQAgent(
-        config['action_size'], 
-        config['state_size'], 
+        action_size=config['action_size'],
         epsilon=config['epsilon'], 
         epsilon_min=config['epsilon_min'],
         epsilon_decay=config['epsilon_decay'],
@@ -128,12 +127,13 @@ def train_single_agent(env_path, log_dir, incr_batch, decr_lr, config):
             if tracked_agent == -1 and len(decision_steps) >= 1:
                 tracked_agent = decision_steps.agent_id[0]
 
+            # TODO is the action selection the problem?
             # Determine the action based on the observation
             # action = agent.choose_action(tf.expand_dims(observation, 0))
             # action_tuple = ActionTuple()
             # action_tuple.add_discrete(action)
 
-            # --------------
+            # -------------- TODO from old code
             # choose greedy action based on Q(s, a; theta)
             actions = []
             for env_nr in range(config['n_envs']):
@@ -159,9 +159,6 @@ def train_single_agent(env_path, log_dir, incr_batch, decr_lr, config):
                 next_observation = terminal_steps[tracked_agent].obs
                 reward = terminal_steps[tracked_agent].reward
             done = tracked_agent in terminal_steps  # Check whether the environment is marked as done
-
-            if reward == -0.1:
-                reward = 0
 
             # Get the next observation
             next_observation = np.concatenate((next_observation[0], next_observation[1], next_observation[2]))
@@ -189,43 +186,38 @@ def train_single_agent(env_path, log_dir, incr_batch, decr_lr, config):
             if done:
                 break
 
+        # Epsilon decay to decrease exploration over time
         agent.decay_epsilon()
+
+        # Save checkpoint
+        if episode % config['checkpoint_save_frequency'] == 0:
+            agent.manager.save()
 
         # Update all lists to track progress over time
         returns.append(reward_sum)
         mean_reward = np.mean(np.array(returns))
         means.append(mean_reward)
+
         # Track progress
         losses.append(loss)
         if decr_lr:
-            learn_rates.append(agent.get_learning_rate())  # TODO this might crash
+            learn_rates.append(agent.get_learning_rate())
         if incr_batch:
             batch_sizes.append(agent.get_batch_size())
         print(f" -- episode: {episode} | reward sum: {reward_sum} | mean reward sum: {mean_reward} | loss: {loss}")
 
         # Create plots to allow visual progress tracking
         if episode % config['plot_frequency'] == 0 and episode > 0:
-            x = np.arange(episode + 1)
 
-            visualize(data=means,
-                      save_path=f'./output/mean_reward_episode_{episode}.png',
-                      title='Mean Reward')
-
-            visualize(data=means,
-                      save_path=f'./output/score_episode_{episode}.png',
-                      title='Scores',
-                      data2=returns)
-
-            visualize(data=losses,
-                      save_path=f'./output/loss_episode_{episode}.png',
-                      title='MSE Loss')
+            visualize(data=means, save_path=f'./output/mean_reward_episode_{episode}.png', title='Mean Reward')
+            visualize(data=means, save_path=f'./output/score_episode_{episode}.png', title='Scores', data2=returns)
+            visualize(data=losses, save_path=f'./output/loss_episode_{episode}.png', title='MSE Loss')
 
             if incr_batch:
                 visualize(data=batch_sizes, save_path=f'./output/batch_size_episode_{episode}.png', title='Batch size')
 
             if decr_lr:
-                visualize(data=learn_rates,
-                          save_path=f'./output/learn_rate_episode_{episode}.png',
+                visualize(data=learn_rates, save_path=f'./output/learn_rate_episode_{episode}.png',
                           title='Learning rate')
 
     env.close()
@@ -278,7 +270,6 @@ if __name__ == "__main__":
         'number_of_episodes': 5000,
         'action_size': 5,
         'batch_size': 256,
-        'state_size': 108, 
         'train_frequency': 5,
         'target_update_frequency': 5000,
         'train_epochs': 3,
@@ -291,7 +282,8 @@ if __name__ == "__main__":
         'batch_incr_freq': 100,
         'batch_factor': 2,
         'lr_decay_steps': 10000,
-        'lr_decay_rate': 0.99
+        'lr_decay_rate': 0.99,
+        'checkpoint_save_frequency': 20
     }
 
     # Calling different training functions depending on which agent mode (single- or multi-agent) is chosen by the user.

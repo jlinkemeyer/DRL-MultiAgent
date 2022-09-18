@@ -6,13 +6,12 @@ from DQN_agent import DeepQAgent
 
 class DoubleDeepQAgent(DeepQAgent):
 
-    def __init__(self, action_size, state_size, epsilon, epsilon_min, epsilon_decay, brain, buffer_size, batch_size,
+    def __init__(self, action_size, epsilon, epsilon_min, epsilon_decay, brain, buffer_size, batch_size,
                  epochs, gamma, alpha, batch_factor, lr_decay_steps, lr_decay_rate, decr_lr):
 
         # Initialize the double deep Q agent with the same parameters as the 'regular' deep Q agent
         super(DoubleDeepQAgent, self).__init__(
-            action_size, 
-            state_size, 
+            action_size,
             epsilon, 
             epsilon_min, 
             epsilon_decay,

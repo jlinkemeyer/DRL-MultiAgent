@@ -8,7 +8,7 @@ from memory import ExperienceReplayBuffer
 
 class DeepQAgent:
 
-    def __init__(self, action_size, state_size, epsilon, epsilon_min, epsilon_decay, brain, buffer_size, batch_size,
+    def __init__(self, action_size, epsilon, epsilon_min, epsilon_decay, brain, buffer_size, batch_size,
                  epochs, gamma, alpha, batch_factor, lr_decay_steps, lr_decay_rate, decr_lr):
 
         # Set agent hyperparameters
@@ -30,8 +30,8 @@ class DeepQAgent:
         self.memory = ExperienceReplayBuffer(capacity=buffer_size)
 
         # Initialize q-network
-        self.q_network = DQN(state_size, action_size)
-        self.target_network = DQN(state_size, action_size)
+        self.q_network = DQN(action_size=action_size)
+        self.target_network = DQN(action_size=action_size)
         self.update_target("hard") # TODO: Is necessary?
 
         # Use either a decaying learning rate or a set learning rate, depending on decr_lr (decrease learning rate)
@@ -49,6 +49,22 @@ class DeepQAgent:
 
         # Set loss function
         self.loss = tf.losses.MeanSquaredError()
+
+        # define checkpoint and load (if one exists)
+        self.checkpoint = tf.train.Checkpoint(**dict(q_network=self.q_network, target_network=self.target_network))
+        self.manager = tf.train.CheckpointManager(self.checkpoint, './tf_checkpoints', max_to_keep=3)
+        self.try2load_checkpoint()
+
+    def try2load_checkpoint(self):
+        """
+        Try to load network weights from a checkpoint (called once in the beginning). User log to track whether
+        checkpoint is used to initialize networks
+        """
+        try:
+            self.checkpoint.restore(self.manager.latest_checkpoint)
+            print("Restored from {}".format(self.manager.latest_checkpoint))
+        except:
+            print("Initializing from scratch.")
 
     def choose_action(self, observation):
         """
@@ -156,9 +172,11 @@ class DeepQAgent:
     def get_batch_size(self):
         """
         Returns the current batch size. Helpful when batch size increase is performed in learning steps.
-        :return:
         """
         return self.batch_size
 
     def increase_batch_size(self):
+        """
+        Function to increase the batch size with a given factor over time.
+        """
         self.batch_size = self.batch_size * self.batch_factor

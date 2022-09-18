@@ -165,7 +165,7 @@ public class MacAgentBasic : Agent
         AddReward(score / normalize);
 
         // Swap ground material for a bit to indicate we scored -> red for wrong combination, green for correct
-        if (score < 0)
+        if (score <= 0)
         {
             StartCoroutine(GoalScoredSwapGroundMaterial(m_MACSettings.failMaterial, 0.5f));
         }
@@ -315,15 +315,6 @@ public class MacAgentBasic : Agent
         // TODO
         //m_statsRecorder.Add("Goal/Correct", 0, StatAggregationMethod.Sum);
         //m_statsRecorder.Add("Goal/Wrong", 0, StatAggregationMethod.Sum);
-    }
-    
-    void OnCollisionEnter(Collision col)
-    {
-        // Enforce touching boxes in the beginning
-        /*if (col.gameObject.CompareTag("wall"))
-        {
-            AddReward(-0.1f);
-        }*/
     }
 }
 

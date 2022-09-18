@@ -1,19 +1,15 @@
 import argparse
-import progressbar as pb
 import numpy as np
 import tensorflow as tf
-import matplotlib.pyplot as plt
-from tensorboardX import SummaryWriter
 from collections import deque
 import matplotlib.pyplot as plt
 
 from mlagents_envs.environment import UnityEnvironment, ActionTuple
 from mlagents_envs.side_channel.engine_configuration_channel import EngineConfigurationChannel
-from DQN_agent import DeepQAgent
+# from DQN_agent import DeepQAgent
 from DDQN_agent import DoubleDeepQAgent
 
 
-# TODO: adjust for multi-agent
 def setup_environment(file_name, log_dir, verbose=True):
     """
     Creates UnityEnvironment object from Unity environment binary
@@ -84,19 +80,13 @@ def train_single_agent(env_path, log_dir, incr_batch, decr_lr, config):
 
     # set up cumulative rewards
     returns = deque(maxlen=100)
-    means = []
-    losses = []
+    means, losses = [], []
     if incr_batch:
         batch_sizes = []
-        batch_size = config['batch_size']
     if decr_lr:
         learn_rates = []
-        learn_rate = config['learning_rate']
-
-    # TODO: move inside loop?
     step = 0
     loss = -1
-    batch_bool = False
 
     # Main training loop - generate one episode per iteration
     for episode in range(config['number_of_episodes']):

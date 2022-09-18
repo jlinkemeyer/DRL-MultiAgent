@@ -63,7 +63,7 @@ class DeepQAgent:
         try:
             self.q_network = tf.keras.models.load_model("./tf_checkpoints", compile=False)
             #self.checkpoint.restore(self.manager.latest_checkpoint)
-            #print("Restored from {}".format(self.manager.latest_checkpoint))
+            print("Restored ckeckpoint")
         except:
             print("Initializing from scratch.")
 

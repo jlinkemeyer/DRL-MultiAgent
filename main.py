@@ -233,7 +233,7 @@ if __name__ == "__main__":
     parser.add_argument("--agent_mode", nargs="?", type=str, 
         default="single", help="Either 'single' or 'multi'")
     parser.add_argument("--env_path", nargs="?", type=str, 
-        default="./builds/Newest", help="Path to Unity Exe")
+        default="./builds/PushBlock_SingleAgent", help="Path to Unity Exe")
     parser.add_argument("--log_dir", nargs="?", type=str, 
         default="./logs", help="Path directory where log files are stored")
     parser.add_argument("--incr_batch", nargs="?", type=strtobool,

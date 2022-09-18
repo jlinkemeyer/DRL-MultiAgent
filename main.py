@@ -269,7 +269,7 @@ if __name__ == "__main__":
         'discount_rate': 0.99,                  # reward discount rate
         'number_of_episodes': 5000,             # number of episodes to train for
         'action_size': 5,                       # number of possible actions
-        'batch_size': 256,                      # batch size per training step
+        'batch_size': 128,                      # batch size per training step
         'train_frequency': 5,                   # after how many steps the agent should learn
         'target_update_frequency': 5000,        # after how many steps the target network weights should be set to the
                                                 # q-network weights

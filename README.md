@@ -10,8 +10,9 @@ This repository contains the groundwork for this project: The environment, devel
 setup in which only one agent is present and receives all necessary information to solve the task. This setup was chosen
 as a proof of concept, that the task was solvable in itself.
 
-For more information on the project, please refer to the [project report](), or the 
-[summary video](https://myshare.uni-osnabrueck.de/f/dd7cae5bdd534c8ba75a/).
+For more information on the project, please refer to the 
+[project report](https://github.com/jlinkemeyer/DRL-MultiAgent/blob/ddqn/report.pdf), 
+or the [summary video](https://myshare.uni-osnabrueck.de/f/dd7cae5bdd534c8ba75a/).
 
 ## Repository Structure
   

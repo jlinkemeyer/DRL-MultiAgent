@@ -12,13 +12,15 @@ from DDQN_agent import DoubleDeepQAgent
 
 def setup_environment(file_name, log_dir, verbose=True):
     """
-    Creates UnityEnvironment object from Unity environment binary
-    and extracts 
+    Creates UnityEnvironment object from Unity build. This allows to control the unity scene and our agent using this
+    code.
+    :param file_name: path to Unity executable
+    :param log_dir: directory for unity logs
+    :param verbose: provide some environment information
+    :return:
     """
-
-    channel = EngineConfigurationChannel()
-
     # create environment
+    channel = EngineConfigurationChannel()
     env = UnityEnvironment(
         file_name,
         seed=1,
@@ -26,7 +28,7 @@ def setup_environment(file_name, log_dir, verbose=True):
         log_folder=log_dir,
         no_graphics=False
     )
-    channel.set_configuration_parameters(time_scale=10.0)
+    channel.set_configuration_parameters(time_scale=2.0)  # to control how fast a step passes in the environment
     env.reset()
 
     # get behavior and agent spec
@@ -105,13 +107,19 @@ def train_single_agent(env_path, log_dir, incr_batch, decr_lr, config):
         # TODO (batch increase also in learn function?)
         if incr_batch and episode % config['batch_incr_freq'] == 0 and not episode == 0:
             agent.increase_batch_size()
+
+        # Must update target network after 100 epochs strictly
+        forced_target_update = False
+        if episode != 0 and episode % 100 == 0:
+            forced_target_update = True
             
         while True:
             # Update the target network in the set update frequency, but only if there are enough samples in the replay
             # buffer since else no weight updates took place yet
-            if step % config['target_update_frequency'] == 0 and agent.sufficient_experience():
+            if agent.sufficient_experience() and (step % config['target_update_frequency'] == 0 or forced_target_update):
                 agent.update_target('hard')
                 print("--------->TARGET UPDATE")
+                forced_target_update = False
 
             # Access the current agent in the scene
             if tracked_agent == -1 and len(decision_steps) >= 1:
@@ -199,15 +207,15 @@ def train_single_agent(env_path, log_dir, incr_batch, decr_lr, config):
         # Create plots to allow visual progress tracking
         if episode % config['plot_frequency'] == 0 and episode > 0:
 
-            visualize(data=means, save_path=f'./output/mean_reward_episode_{episode}.png', title='Mean Reward')
-            visualize(data=means, save_path=f'./output/score_episode_{episode}.png', title='Scores', data2=returns)
-            visualize(data=losses, save_path=f'./output/loss_episode_{episode}.png', title='MSE Loss')
+            visualize(data=means, save_path=f'./plots/mean_reward_episode_{episode}.png', title='Mean Reward')
+            visualize(data=means, save_path=f'./plots/score_episode_{episode}.png', title='Scores', data2=returns)
+            visualize(data=losses, save_path=f'./plots/loss_episode_{episode}.png', title='MSE Loss')
 
             if incr_batch:
-                visualize(data=batch_sizes, save_path=f'./output/batch_size_episode_{episode}.png', title='Batch size')
+                visualize(data=batch_sizes, save_path=f'./plots/batch_size_episode_{episode}.png', title='Batch size')
 
             if decr_lr:
-                visualize(data=learn_rates, save_path=f'./output/learn_rate_episode_{episode}.png',
+                visualize(data=learn_rates, save_path=f'./plots/learn_rate_episode_{episode}.png',
                           title='Learning rate')
 
     env.close()
@@ -250,30 +258,33 @@ if __name__ == "__main__":
         default=False, help="Whether to gradually increase the batch size, either 'True' or 'False'")
     parser.add_argument("--decr_lr", nargs="?", type=bool, 
         default=False, help="Whether to gradually decay the learning rate, either 'True' or 'False'")
+    parser.add_argument("--no_graphics", nargs="?", type=bool,
+                        default=False, help="Set to true if you do not want a new window to open up in which you can "
+                                            "see the agent during training")
     args = parser.parse_args()
 
-    # TODO: read configs from file instead of hardcoding
+    # training configurations
     config = {
-        'buffer_size': 50000,
-        'learning_rate': 0.001,
-        'discount_rate': 0.99,
-        'number_of_episodes': 5000,
-        'action_size': 5,
-        'batch_size': 256,
-        'train_frequency': 5,
-        'target_update_frequency': 5000,
-        'train_epochs': 3,
-        'n_envs': 1,
-        'epsilon': 0.8,
-        'epsilon_min': 0.001,
-        'epsilon_decay': 0.99,
-        'plot_frequency': 50,
-        'save_frequency': 10,
-        'batch_incr_freq': 100,
-        'batch_factor': 2,
-        'lr_decay_steps': 10000,
-        'lr_decay_rate': 0.99,
-        'checkpoint_save_frequency': 20
+        'buffer_size': 50000,                   # max number of elements in the experience replay buffer
+        'learning_rate': 0.001,                 # learning rate (lr) - if decaying learning rate, this is the initial lr
+        'discount_rate': 0.99,                  # reward discount rate
+        'number_of_episodes': 5000,             # number of episodes to train for
+        'action_size': 5,                       # number of possible actions
+        'batch_size': 256,                      # batch size per training step
+        'train_frequency': 5,                   # after how many steps the agent should learn
+        'target_update_frequency': 5000,        # after how many steps the target network weights should be set to the
+                                                # q-network weights
+        'train_epochs': 3,                      # for how many epochs it is trained for each learn() call
+        'n_envs': 1,                            # number of envs/ areas within the unity build
+        'epsilon': 0.8,                         # initial epsilon (exploration rate)
+        'epsilon_min': 0.001,                   # minimal epsilon value
+        'epsilon_decay': 0.99,                  # decay factor, epsilon decays at each time step
+        'plot_frequency': 50,                   # after how many episodes new plots should be created and saved
+        'batch_incr_freq': 100,                 # after how many epochs the batch size should be increased
+        'batch_factor': 2,                      # how much the batch size should be increased
+        'lr_decay_steps': 10000,                # for how many steps the learning rate decays
+        'lr_decay_rate': 0.99,                  # how strong the learning rate decays
+        'checkpoint_save_frequency': 20         # after how many episodes a new model checkpoint should be created
     }
 
     # Calling different training functions depending on which agent mode (single- or multi-agent) is chosen by the user.

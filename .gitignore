@@ -1,0 +1,11 @@
+# Ignore logs but keep folder
+logs/*
+!logs/.gitkeep
+
+# Ignore plots but keep folder
+plots/*
+!plots/.gitkeep
+
+# Ignore checkpoints but keep folder
+tf_checkpoints/*
+!tf.checkpoints/.gitkeep

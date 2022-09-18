@@ -26,7 +26,7 @@ def setup_environment(file_name, log_dir, verbose=True):
         log_folder=log_dir,
         no_graphics=False
     )
-    channel.set_configuration_parameters(time_scale=2.0)
+    channel.set_configuration_parameters(time_scale=10.0)
     env.reset()
 
     # get behavior and agent spec
@@ -264,7 +264,7 @@ if __name__ == "__main__":
         'target_update_frequency': 5000,
         'train_epochs': 3,
         'n_envs': 1,
-        'epsilon': 0.1,
+        'epsilon': 0.8,
         'epsilon_min': 0.001,
         'epsilon_decay': 0.99,
         'plot_frequency': 50,

@@ -11,12 +11,13 @@ from mlagents_envs.side_channel.engine_configuration_channel import EngineConfig
 from DDQN_agent import DoubleDeepQAgent
 
 
-def setup_environment(file_name, log_dir, verbose=True):
+def setup_environment(file_name, log_dir, no_graphics=False, verbose=True):
     """
     Creates UnityEnvironment object from Unity build. This allows to control the unity scene and our agent using this
     code.
     :param file_name: path to Unity executable
     :param log_dir: directory for unity logs
+    :param no_graphics: set true if no new window with unity scene should show up
     :param verbose: provide some environment information
     :return:
     """
@@ -27,7 +28,7 @@ def setup_environment(file_name, log_dir, verbose=True):
         seed=1,
         side_channels=[channel],
         log_folder=log_dir,
-        no_graphics=False
+        no_graphics=no_graphics
     )
     channel.set_configuration_parameters(time_scale=2.0)  # to control how fast a step passes in the environment
     env.reset()
@@ -49,7 +50,7 @@ def setup_environment(file_name, log_dir, verbose=True):
     return env, behavior_name, agent_spec 
 
 
-def train_single_agent(env_path, train, log_dir, incr_batch, decr_lr, config):
+def train_single_agent(env_path, train, log_dir, incr_batch, decr_lr, no_graphics, config):
     """
     Training function. Contains the main training loop.
 
@@ -61,7 +62,7 @@ def train_single_agent(env_path, train, log_dir, incr_batch, decr_lr, config):
     :return:
     """
     # Use the gym wrapper to create a controllable environment
-    env, behavior_name, agent_spec = setup_environment(env_path, log_dir, verbose=True)
+    env, behavior_name, agent_spec = setup_environment(env_path, log_dir, no_graphics, verbose=True)
 
     # Create an agent with given parameters
     agent = DoubleDeepQAgent(
@@ -288,7 +289,8 @@ if __name__ == "__main__":
     # Calling different training functions depending on which agent mode (single- or multi-agent) is chosen by the user.
     # Currently, only 'single' is possible. Due to time constraints, the 'multi' option is not implemented
     if args.agent_mode == "single":
-        train_single_agent(args.env_path, args.train, args.log_dir, args.incr_batch, args.decr_lr, config)
+        train_single_agent(args.env_path, args.train, args.log_dir, args.incr_batch, args.decr_lr, args.no_graphics,
+                           config)
     elif args.agent_mode == "multi":
         raise NotImplementedError
     else:

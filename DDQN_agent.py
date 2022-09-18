@@ -37,24 +37,24 @@ class DoubleDeepQAgent(DeepQAgent):
         # Sample trajectories from replay buffer
         observations, actions, rewards, next_observations, dones = self.memory.sample(self.batch_size)
 
-        # TODO: comments
         with tf.GradientTape() as tape:
 
+            # obtain predictions from both main q-network and target network
             q_next_target = tf.stop_gradient(self.target_network(next_observations))
             q_next_main = tf.stop_gradient(self.q_network(next_observations))
 
-            # use main network to choose max action of next state
+            # use main q-network to choose the action with the maximal q-value for the next observation (action selection)
             max_actions = np.argmax(q_next_main, axis=1)
 
-            # gather target network q-values of actions selected by main network
+            # extract q-values from the target network for the actions selected by the main q-network (action evaluation)
             q_next = tf.gather_nd(
                 q_next_target, # predictions
                 tf.stack([tf.range(self.batch_size), tf.cast(max_actions, tf.int32)], axis=1)) # indices
 
-            # get q-values from target network (at the indices chosen by main network) # TODO I dont get this comment
+            # compute targets with r + gamma * q'
             targets = tf.math.add(rewards, tf.math.multiply(self.gamma, q_next, (1 - dones)))
 
-            # get expected q-values/predictions and compute MSE between target and expected
+            # obtain the expected predictions from the main q-network and compute MSE between target and expected
             predictions = tf.gather_nd(
                 self.q_network(observations), # predictions
                 tf.stack([tf.range(self.batch_size), tf.cast(tf.squeeze(actions), tf.int32)], axis=1)) # indices

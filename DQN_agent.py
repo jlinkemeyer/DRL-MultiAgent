@@ -104,9 +104,10 @@ class DeepQAgent:
         :return: true if replay buffer has more than a specific number of items
         """
         # TODO delete
-        if len(self.memory) == self.batch_size * 50:
+        init_batch = 128
+        if len(self.memory) == init_batch * 50:
             print('Heureka, it is warm!')
-        return len(self.memory) >= self.batch_size * 50
+        return len(self.memory) >= init_batch * 50
 
     def learn(self):
         """

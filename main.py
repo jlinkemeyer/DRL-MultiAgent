@@ -3,6 +3,7 @@ import numpy as np
 import tensorflow as tf
 from collections import deque
 import matplotlib.pyplot as plt
+from distutils.util import strtobool
 
 from mlagents_envs.environment import UnityEnvironment, ActionTuple
 from mlagents_envs.side_channel.engine_configuration_channel import EngineConfigurationChannel
@@ -48,7 +49,7 @@ def setup_environment(file_name, log_dir, verbose=True):
     return env, behavior_name, agent_spec 
 
 
-def train_single_agent(env_path, log_dir, incr_batch, decr_lr, config):
+def train_single_agent(env_path, train, log_dir, incr_batch, decr_lr, config):
     """
     Training function. Contains the main training loop.
 
@@ -105,21 +106,15 @@ def train_single_agent(env_path, log_dir, incr_batch, decr_lr, config):
         observation = np.concatenate((observation[0], observation[1], observation[2]))  # TODO
 
         # TODO (batch increase also in learn function?)
-        if incr_batch and episode % config['batch_incr_freq'] == 0 and not episode == 0:
+        if incr_batch and agent.sufficient_experience() and episode % config['batch_incr_freq'] == 0 and not episode == 0:
             agent.increase_batch_size()
 
-        # Must update target network after 100 epochs strictly
-        forced_target_update = False
-        if episode != 0 and episode % 100 == 0:
-            forced_target_update = True
-            
         while True:
             # Update the target network in the set update frequency, but only if there are enough samples in the replay
             # buffer since else no weight updates took place yet
-            if agent.sufficient_experience() and (step % config['target_update_frequency'] == 0 or forced_target_update):
+            if train and step % config['target_update_frequency'] == 0 and agent.sufficient_experience():
                 agent.update_target('hard')
                 print("--------->TARGET UPDATE")
-                forced_target_update = False
 
             # Access the current agent in the scene
             if tracked_agent == -1 and len(decision_steps) >= 1:
@@ -171,7 +166,7 @@ def train_single_agent(env_path, log_dir, incr_batch, decr_lr, config):
             reward_sum += reward
 
             # Train q-network according to training frequency, but only if the memory buffer contains enough samples
-            if step % config['train_frequency'] == 0:
+            if train and step % config['train_frequency'] == 0:
                 if agent.sufficient_experience():
                     l = []
                     for _ in range(agent.epochs):
@@ -185,10 +180,11 @@ def train_single_agent(env_path, log_dir, incr_batch, decr_lr, config):
                 break
 
         # Epsilon decay to decrease exploration over time
-        agent.decay_epsilon()
+        if train:
+            agent.decay_epsilon()
 
         # Save checkpoint
-        if episode % config['checkpoint_save_frequency'] == 0:
+        if train and episode % config['checkpoint_save_frequency'] == 0:
             agent.manager.save()
 
         # Update all lists to track progress over time
@@ -205,7 +201,7 @@ def train_single_agent(env_path, log_dir, incr_batch, decr_lr, config):
         print(f" -- episode: {episode} | reward sum: {reward_sum} | mean reward sum: {mean_reward} | loss: {loss}")
 
         # Create plots to allow visual progress tracking
-        if episode % config['plot_frequency'] == 0 and episode > 0:
+        if train and episode % config['plot_frequency'] == 0 and episode > 0:
 
             visualize(data=means, save_path=f'./plots/mean_reward_episode_{episode}.png', title='Mean Reward')
             visualize(data=means, save_path=f'./plots/score_episode_{episode}.png', title='Scores', data2=returns)
@@ -254,10 +250,12 @@ if __name__ == "__main__":
         default="./builds/Newest", help="Path to Unity Exe")
     parser.add_argument("--log_dir", nargs="?", type=str, 
         default="./logs", help="Path directory where log files are stored")
-    parser.add_argument("--incr_batch", nargs="?", type=bool, 
+    parser.add_argument("--incr_batch", nargs="?", type=strtobool,
         default=False, help="Whether to gradually increase the batch size, either 'True' or 'False'")
-    parser.add_argument("--decr_lr", nargs="?", type=bool, 
+    parser.add_argument("--decr_lr", nargs="?", type=strtobool,
         default=False, help="Whether to gradually decay the learning rate, either 'True' or 'False'")
+    parser.add_argument("--train", nargs="?", type=strtobool,
+        default=True, help="Whether to train the agent, either 'True' or 'False'")
     parser.add_argument("--no_graphics", nargs="?", type=bool,
                         default=False, help="Set to true if you do not want a new window to open up in which you can "
                                             "see the agent during training")
@@ -280,7 +278,7 @@ if __name__ == "__main__":
         'epsilon_min': 0.001,                   # minimal epsilon value
         'epsilon_decay': 0.99,                  # decay factor, epsilon decays at each time step
         'plot_frequency': 50,                   # after how many episodes new plots should be created and saved
-        'batch_incr_freq': 100,                 # after how many epochs the batch size should be increased
+        'batch_incr_freq': 500,                 # after how many epochs the batch size should be increased
         'batch_factor': 2,                      # how much the batch size should be increased
         'lr_decay_steps': 10000,                # for how many steps the learning rate decays
         'lr_decay_rate': 0.99,                  # how strong the learning rate decays
@@ -290,7 +288,7 @@ if __name__ == "__main__":
     # Calling different training functions depending on which agent mode (single- or multi-agent) is chosen by the user.
     # Currently, only 'single' is possible. Due to time constraints, the 'multi' option is not implemented
     if args.agent_mode == "single":
-        train_single_agent(args.env_path, args.log_dir, args.incr_batch, args.decr_lr, config)
+        train_single_agent(args.env_path, args.train, args.log_dir, args.incr_batch, args.decr_lr, config)
     elif args.agent_mode == "multi":
         raise NotImplementedError
     else:

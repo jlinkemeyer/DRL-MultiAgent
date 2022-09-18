@@ -65,7 +65,7 @@ If you would like to run the code yourself, please follow the instructions below
 * Go to the directory (PATH) you would like this repo to be cloned in
   * `cd PATH`
 * Run the following commands:
-  * `git clone `
+  * `git clone https://github.com/jlinkemeyer/DRL-MultiAgent.git`
   * `cd DRL-MultiAgent`
   * `pip3 install -r requirements.txt`
 

@@ -72,12 +72,12 @@ If you would like to run the code yourself, please follow the instructions below
 
 #### Download the checkpoints
 If you do not want to train the network yourself but still want to see how the trained agent behaves in its environment,
-please download the checkpoints from [here]() and store them in the `tf_checkpoints` folder.
+please download the checkpoints from [here](https://myshare.uni-osnabrueck.de/f/f81d6193843045d49202/) and store them 
+in the `tf_checkpoints` folder.
 
 #### Start testing
-Now you can simply run the command `python main.py`. If everything goes right, you will receive a message that the 
-models are initialized with the given checkpoints. Also, a Unity window will open up and show how the agent performs 
-using the loaded checkpoints.
+Now you can simply run the command `python main.py --train False`. A Unity window will open up and show how the agent 
+performs using the loaded checkpoints.
 
 ### Training yourself
 Checkpoints are loaded automatically if they are contained in the checkpoints folder. If you want to train from scratch,

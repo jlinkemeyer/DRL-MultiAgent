@@ -9,3 +9,6 @@ plots/*
 # Ignore checkpoints but keep folder
 tf_checkpoints/*
 !tf.checkpoints/.gitkeep
+
+# Byte-compiled / optimized / DLL files
+__pycache__/

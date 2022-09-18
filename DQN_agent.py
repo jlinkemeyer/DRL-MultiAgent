@@ -61,8 +61,9 @@ class DeepQAgent:
         checkpoint is used to initialize networks
         """
         try:
-            self.checkpoint.restore(self.manager.latest_checkpoint)
-            print("Restored from {}".format(self.manager.latest_checkpoint))
+            self.q_network = tf.keras.models.load_model("./tf_checkpoints", compile=False)
+            #self.checkpoint.restore(self.manager.latest_checkpoint)
+            #print("Restored from {}".format(self.manager.latest_checkpoint))
         except:
             print("Initializing from scratch.")
 

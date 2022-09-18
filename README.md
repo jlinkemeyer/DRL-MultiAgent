@@ -10,7 +10,8 @@ This repository contains the groundwork for this project: The environment, devel
 setup in which only one agent is present and receives all necessary information to solve the task. This setup was chosen
 as a proof of concept, that the task was solvable in itself.
 
-For more information on the project, please refer to the [project report](), or the [summary video]().
+For more information on the project, please refer to the [project report](), or the 
+[summary video](https://myshare.uni-osnabrueck.de/f/dd7cae5bdd534c8ba75a/).
 
 ## Repository Structure
   
@@ -72,8 +73,8 @@ If you would like to run the code yourself, please follow the instructions below
 
 #### Download the checkpoints
 If you do not want to train the network yourself but still want to see how the trained agent behaves in its environment,
-please download the checkpoints from [here](https://myshare.uni-osnabrueck.de/f/f81d6193843045d49202/) and store them 
-in the `tf_checkpoints` folder.
+please download the checkpoints from [here](https://myshare.uni-osnabrueck.de/f/f81d6193843045d49202/) and unzip them 
+into the `tf_checkpoints` folder.
 
 #### Start testing
 Now you can simply run the command `python main.py --train False`. A Unity window will open up and show how the agent 

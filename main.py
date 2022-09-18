@@ -64,10 +64,15 @@ def train_single_agent(env_path, train, log_dir, incr_batch, decr_lr, no_graphic
     # Use the gym wrapper to create a controllable environment
     env, behavior_name, agent_spec = setup_environment(env_path, log_dir, no_graphics, verbose=True)
 
+    if train:
+        epsilon = config['epsilon']
+    else:
+        epsilon = config['epsilon_min']
+
     # Create an agent with given parameters
     agent = DoubleDeepQAgent(
         action_size=config['action_size'],
-        epsilon=config['epsilon'], 
+        epsilon=epsilon,
         epsilon_min=config['epsilon_min'],
         epsilon_decay=config['epsilon_decay'],
         brain=agent_spec,

@@ -46,7 +46,6 @@ class ExperienceReplayBuffer():
         """
 
         # Sample minibatch from replay buffer
-        # TODO could move replay buffer to class and create minibatch function
         minibatch = random.sample(self.buffer, batch_size)
 
         states = tf.cast(tf.convert_to_tensor(np.vstack([m.state for m in minibatch if m is not None])),

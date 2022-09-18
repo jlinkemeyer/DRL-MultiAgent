@@ -38,7 +38,7 @@ def setup_environment(file_name, log_dir, no_graphics=False, verbose=True):
     agent_spec = env.behavior_specs[behavior_name]
 
     if verbose:
-        # TODO: observation and action shapes
+        # observation and action shapes
         print("\n")
         print("SPEC INFO:")
         print(f"-- Number of observations: {len(agent_spec.observation_specs)}")
@@ -104,9 +104,8 @@ def train_single_agent(env_path, train, log_dir, incr_batch, decr_lr, no_graphic
 
         # Get the current observation of the agent
         observation = decision_steps[0].obs
-        observation = np.concatenate((observation[0], observation[1], observation[2]))  # TODO
+        observation = np.concatenate((observation[0], observation[1], observation[2]))
 
-        # TODO (batch increase also in learn function?)
         if incr_batch and agent.sufficient_experience() and episode % config['batch_incr_freq'] == 0 and not episode == 0:
             agent.increase_batch_size()
 
@@ -121,24 +120,10 @@ def train_single_agent(env_path, train, log_dir, incr_batch, decr_lr, no_graphic
             if tracked_agent == -1 and len(decision_steps) >= 1:
                 tracked_agent = decision_steps.agent_id[0]
 
-            # TODO is the action selection the problem?
             # Determine the action based on the observation
-            # action = agent.choose_action(tf.expand_dims(observation, 0))
-            # action_tuple = ActionTuple()
-            # action_tuple.add_discrete(action)
-
-            # -------------- TODO from old code
-            # choose greedy action based on Q(s, a; theta)
-            actions = []
-            for env_nr in range(config['n_envs']):
-                action = agent.choose_action(tf.expand_dims(observation, 0))
-                actions.append(action)
-            actions = [np.squeeze(action) for action in actions]
-            actions = np.array(actions)
-            actions = np.expand_dims(actions, 1)
+            action = agent.choose_action(tf.expand_dims(observation, 0))
             action_tuple = ActionTuple()
-            action_tuple.add_discrete(actions)
-            # ---------------
+            action_tuple.add_discrete(action)
 
             # Perform the determined action
             env.set_actions(behavior_name, action_tuple)
@@ -225,7 +210,7 @@ def visualize(data, title, save_path, data2=None):
     :param data: 1-d array or list
     :param title: title is used for the plot and y-axis description
     :param save_path: path where to save the plot as a .png file
-    :param data2: special case when two arrays should be plotted in the same image # TODO not working properly
+    :param data2: special case when two arrays should be plotted in the same image
     """
     try:
         plt.figure()

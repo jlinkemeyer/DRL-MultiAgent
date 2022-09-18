@@ -86,8 +86,7 @@ make sure that the checkpoints folder is empty. Then, simply run the command `py
 
 **Options:** You have different options on how you would like to train. You can set different flags when calling 
 `python main.py`. You have the option to use `--incr_batch True` to use code that increases batch size during training.
-You can also use a learning rate decrease during training by passing the flag `--decr_lr True`. <!--If you want to train
-without the Unity exe opening up a new window, you can use the flag `--no_graphics True`-->
+You can also use a learning rate decrease during training by passing the flag `--decr_lr True`.
 
 
 

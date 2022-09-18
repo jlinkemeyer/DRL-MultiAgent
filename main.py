@@ -11,7 +11,7 @@ from mlagents_envs.side_channel.engine_configuration_channel import EngineConfig
 from DDQN_agent import DoubleDeepQAgent
 
 
-def setup_environment(file_name, log_dir, no_graphics=False, verbose=True):
+def setup_environment(file_name, log_dir, verbose=True):
     """
     Creates UnityEnvironment object from Unity build. This allows to control the unity scene and our agent using this
     code.
@@ -28,7 +28,7 @@ def setup_environment(file_name, log_dir, no_graphics=False, verbose=True):
         seed=1,
         side_channels=[channel],
         log_folder=log_dir,
-        no_graphics=no_graphics
+        no_graphics=False
     )
     channel.set_configuration_parameters(time_scale=2.0)  # to control how fast a step passes in the environment
     env.reset()
@@ -50,19 +50,19 @@ def setup_environment(file_name, log_dir, no_graphics=False, verbose=True):
     return env, behavior_name, agent_spec 
 
 
-def train_single_agent(env_path, train, log_dir, incr_batch, decr_lr, no_graphics, config):
+def train_single_agent(env_path, train, log_dir, incr_batch, decr_lr, config):
     """
     Training function. Contains the main training loop.
 
     :param env_path: Path to the Unity executable
     :param log_dir: directory to save console logs in
-    :param incr_batch:
-    :param decr_lr:
+    :param incr_batch: if batch size should be increased during training
+    :param decr_lr: if learning rate should be decreased during training
     :param config: training configuration information
     :return:
     """
     # Use the gym wrapper to create a controllable environment
-    env, behavior_name, agent_spec = setup_environment(env_path, log_dir, no_graphics, verbose=True)
+    env, behavior_name, agent_spec = setup_environment(env_path, log_dir, verbose=True)
 
     if train:
         epsilon = config['epsilon']
@@ -247,9 +247,6 @@ if __name__ == "__main__":
         default=False, help="Whether to gradually decay the learning rate, either 'True' or 'False'")
     parser.add_argument("--train", nargs="?", type=strtobool,
         default=True, help="Whether to train the agent, either 'True' or 'False'")
-    parser.add_argument("--no_graphics", nargs="?", type=bool,
-                        default=False, help="Set to true if you do not want a new window to open up in which you can "
-                                            "see the agent during training")
     args = parser.parse_args()
 
     # training configurations
@@ -279,8 +276,7 @@ if __name__ == "__main__":
     # Calling different training functions depending on which agent mode (single- or multi-agent) is chosen by the user.
     # Currently, only 'single' is possible. Due to time constraints, the 'multi' option is not implemented
     if args.agent_mode == "single":
-        train_single_agent(args.env_path, args.train, args.log_dir, args.incr_batch, args.decr_lr, args.no_graphics,
-                           config)
+        train_single_agent(args.env_path, args.train, args.log_dir, args.incr_batch, args.decr_lr, config)
     elif args.agent_mode == "multi":
         raise NotImplementedError
     else:
